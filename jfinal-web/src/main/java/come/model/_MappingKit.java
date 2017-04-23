@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
  */
 public class _MappingKit {
     public static void mapping(ActiveRecordPlugin arp){
-        arp.addMapping("user","username", User.class);
+        arp.addMapping("image","id", Image.class);
+        arp.addMapping("product","productId",Product.class);
     }
 }

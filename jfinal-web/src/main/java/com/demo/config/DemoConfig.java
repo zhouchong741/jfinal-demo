@@ -1,13 +1,16 @@
 package com.demo.config;
 
-import com.demo.controller.HelloController;
-import com.demo.controller.UserController;
+import com.demo.controller.ProductController;
+import com.demo.controller.HomeController;
 import com.jfinal.config.*;
+import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
-import com.jfinal.render.ViewType;
 import come.model._MappingKit;
+import org.beetl.core.GroupTemplate;
+import org.beetl.ext.jfinal.BeetlRenderFactory;
 
 /**
  * Created by zc741 on 2017/4/22.
@@ -17,14 +20,16 @@ public class DemoConfig extends JFinalConfig {
     public void configConstant(Constants me) {
         //读取数据库配置文件
         PropKit.use("config.properties");
-        me.setViewType(ViewType.JSP);
+        me.setMainRenderFactory(new BeetlRenderFactory(PathKit.getWebRootPath() + "/WEB-INF/beetl"));
+        GroupTemplate gt = BeetlRenderFactory.groupTemplate;
+        //me.setViewType(ViewType.JSP);
         me.setDevMode(true);
     }
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/", HelloController.class);
-        me.add("/user",UserController.class);
+        me.add("/home",HomeController.class);
+        me.add("/product",ProductController.class);
     }
 
     @Override
@@ -36,7 +41,7 @@ public class DemoConfig extends JFinalConfig {
         ActiveRecordPlugin arp=new ActiveRecordPlugin(c3p0Plugin);
         me.add(arp);
 
-        //arp.addMapping("user",User.class);
+        //arp.addMapping("user",Image.class);
         _MappingKit.mapping(arp);
     }
 
@@ -47,6 +52,6 @@ public class DemoConfig extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers me) {
-
+        me.add(new ContextPathHandler("ctx"));
     }
 }
