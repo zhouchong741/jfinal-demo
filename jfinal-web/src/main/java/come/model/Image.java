@@ -13,6 +13,6 @@ public class Image extends Model<Image> {
 
     public List<Image> getBanner(ImageType type) {
         String sql = "SELECT * FROM image WHERE type='" + type + "'";
-        return find(sql);
+        return dao.find(sql);
     }
 }

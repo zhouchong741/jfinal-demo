@@ -16,22 +16,26 @@
     }
 
     .main-menu .active {
-        color: #c06b81;
+        color: #cab17a;
         transition: all 300ms ease-in 0s;
     }
 
     .main-menu ul li a {
         display: block;
-        font-size: 14px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 500;
         letter-spacing: 2px;
         line-height: 30px;
         padding: 10px 24px;
         position: relative;
+        color:#929aa0;
         text-transform: uppercase;
         text-decoration: none;
     }
 
+    .main-menu ul li a:hover{
+        color: #cab17a;
+    }
     .item img {
         width: 100%;
         height: 700px !important;
@@ -132,6 +136,25 @@
         text-align: center;
         top: 50px;
     }
+    .social ul li {
+        display: inline-block;
+        margin: 0 20px;
+    }
+    .social i.fa{
+        font-size: 26px;
+        padding: 4px;
+        color: #cab17a;
+        transition: all 0.3s;
+    }
+    .social i.fa:hover{
+        font-size: 26px;
+        padding: 4px;
+        color: #FFFFFF;
+        transition: all 0.3s;
+    }
+    .social ul li a{
+        color: #cab17a;
+    }
 </style>
 <body>
 <header>
@@ -162,7 +185,7 @@
                         <nav style="text-align: center;">
                             <ul style="list-style: outside none none;margin: 0;padding: 0;">
                                 <li>
-                                    <a class="active" href="index.html">首页</a>
+                                    <a class="active" href="#">首页</a>
                                 </li>
                                 <li>
                                     <a href="#">一楼</a>
@@ -203,10 +226,12 @@
     <div class="carousel-inner" role="listbox">
         <% for(banner in banners){%>
         <div class="item">
-            <img src="${banner.imgUrl}" alt="...">
-            <div class="carousel-caption">
-                ${banner.introduce}
-            </div>
+            <a href="${banner.linkUrl}" style="width: 100%;height: 700px">
+                <img src="${banner.imgUrl}" alt="...">
+                <div class="carousel-caption">
+                    ${banner.introduce}
+                </div>
+            </a>
         </div>
         <%}%>
     </div>
@@ -229,7 +254,7 @@
 <!--product start-->
 <div class="row" style="width: 1150px;margin: 0 auto;">
     <% for(product in products){ %>
-    <div class="col-md-3">
+    <div class="col-md-3" style="margin-bottom: 20px">
         <div class="product caption-style-4">
             <li>
                 <a href="#">
@@ -250,6 +275,23 @@
     </div>
     <%}%>
 
+</div>
+
+<div  style="background: #252531; padding: 50px 0 20px 0;">
+    <div class="container text-center">
+        <div class="social" style="visibility: visible; margin-bottom: 50px;">
+            <ul style="list-style: none;">
+                <li><a href="#"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-weibo"></i></a></li>
+                <li><a href="#"><i class="fa fa-qrcode"></i></a></li>
+                <li><a href="#"><i class="fa fa-phone"></i></a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
+            </ul>
+        </div>
+        <div class="fnav">
+            <p style="color: #ada8a8;">© 2017 ZC741. All rights reserved.</p>
+        </div>
+    </div>
 </div>
 <!--product end-->
 <script src="${ctx}/static/js/jquery-3.2.1.min.js"></script>
