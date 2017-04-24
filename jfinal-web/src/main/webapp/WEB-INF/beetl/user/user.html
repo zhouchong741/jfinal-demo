@@ -1,0 +1,37 @@
+<% include("../layout/header.html"){} %>
+<style>
+
+</style>
+<body>
+<div style="width: 1150px;margin: 0 auto;">
+    <input type="text" class="form-control name" placeholder="Username" aria-describedby="sizing-addon2">
+    <input type="password" class="form-control password" placeholder="Password" aria-describedby="sizing-addon2">
+    <button type="button" class="btn btn-default login">Submit</button>
+</div>
+
+<% include("../layout/footer.html"){} %>
+<script>
+    $(".login").click(function () {
+        var data = {};
+        data.userName = $(".name").val();
+        data.password = $(".password").val();
+        $.ajax({
+            url : "${ctx}/user/login",
+            type : "post",
+            cache : false,
+            data : data,
+            cache : false,
+            dataType : "json",
+            success: function(result){
+                if (result == "1"){
+                    console.log("登录成功");
+                    //todo 跳转到逻辑界面
+                }else {
+                    console.log("登录失败")
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>

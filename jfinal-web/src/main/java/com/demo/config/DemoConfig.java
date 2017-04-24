@@ -2,6 +2,7 @@ package com.demo.config;
 
 import com.demo.controller.ProductController;
 import com.demo.controller.HomeController;
+import com.demo.controller.UserController;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
@@ -30,6 +31,7 @@ public class DemoConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/home",HomeController.class);
         me.add("/product",ProductController.class);
+        me.add("/user",UserController.class);
     }
 
     @Override

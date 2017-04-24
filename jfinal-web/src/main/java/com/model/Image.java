@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.Model;
 import java.util.List;
 
 /**
+ *
  * Created by zc741 on 2017/4/23.
  */
 public class Image extends Model<Image> {

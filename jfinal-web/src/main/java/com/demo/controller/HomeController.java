@@ -8,6 +8,7 @@ import com.model.Product;
 import java.util.List;
 
 /**
+ *
  * Created by zc741 on 2017/4/23.
  */
 public class HomeController extends Controller {
