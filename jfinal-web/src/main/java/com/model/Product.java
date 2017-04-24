@@ -1,4 +1,4 @@
-package come.model;
+package com.model;
 
 import com.jfinal.plugin.activerecord.Model;
 

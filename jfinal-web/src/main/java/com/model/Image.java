@@ -1,6 +1,6 @@
-package come.model;
+package com.model;
 
-import com.demo.come.demo.pojo.ImageType;
+import com.pojo.ImageType;
 import com.jfinal.plugin.activerecord.Model;
 
 import java.util.List;

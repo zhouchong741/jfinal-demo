@@ -8,7 +8,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
-import come.model._MappingKit;
+import com.model._MappingKit;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 

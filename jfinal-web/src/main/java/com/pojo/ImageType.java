@@ -1,4 +1,4 @@
-package com.demo.come.demo.pojo;
+package com.pojo;
 
 /**
  * Created by zc741 on 2017/4/23.

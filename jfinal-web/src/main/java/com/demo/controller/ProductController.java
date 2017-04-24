@@ -1,7 +1,7 @@
 package com.demo.controller;
 
 import com.jfinal.core.Controller;
-import come.model.Product;
+import com.model.Product;
 
 import java.util.List;
 

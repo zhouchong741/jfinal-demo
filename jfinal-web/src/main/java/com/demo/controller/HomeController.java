@@ -1,9 +1,9 @@
 package com.demo.controller;
 
-import com.demo.come.demo.pojo.ImageType;
+import com.pojo.ImageType;
 import com.jfinal.core.Controller;
-import come.model.Image;
-import come.model.Product;
+import com.model.Image;
+import com.model.Product;
 
 import java.util.List;
 
