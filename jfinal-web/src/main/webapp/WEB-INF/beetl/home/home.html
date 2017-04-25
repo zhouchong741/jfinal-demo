@@ -1,4 +1,6 @@
 <% include("../layout/header.html"){} %>
+<title>首页</title>
+</head>
 <style>
     .main-menu ul li {
         display: inline-block;
@@ -28,17 +30,36 @@
         line-height: 30px;
         padding: 10px 24px;
         position: relative;
-        color:#929aa0;
+        color: #929aa0;
         text-transform: uppercase;
         text-decoration: none;
     }
 
-    .main-menu ul li a:hover{
+    .main-menu ul li a:hover {
         color: #cab17a;
     }
+
     .item img {
         width: 100%;
         height: 700px !important;
+    }
+
+    .discount {
+        width: 1150px;
+        margin: 50px auto;
+    }
+
+    .discount img {
+        width: 100%;
+    }
+
+    .product-div {
+        width: 1150px;
+        margin: 50px auto;
+    }
+
+    .product li a img {
+        width: 100%;
     }
 
     .product span {
@@ -117,7 +138,7 @@
     .caption-style-4 .blur {
         background-color: rgba(0, 0, 0, 0.65);
         height: 200px;
-        width: 250px;
+        width: 257.5px;
         z-index: 5;
         position: absolute;
     }
@@ -136,24 +157,117 @@
         text-align: center;
         top: 50px;
     }
+
     .social ul li {
         display: inline-block;
         margin: 0 20px;
     }
-    .social i.fa{
+
+    .social i.fa {
         font-size: 26px;
         padding: 4px;
         color: #cab17a;
         transition: all 0.3s;
     }
-    .social i.fa:hover{
+
+    .social i.fa:hover {
         font-size: 26px;
         padding: 4px;
         color: #FFFFFF;
         transition: all 0.3s;
     }
-    .social ul li a{
+
+    .social ul li a {
         color: #cab17a;
+    }
+
+    /*discount*/
+    .hovereffect {
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+    }
+
+    .hovereffect .overlay {
+        position: absolute;
+        overflow: hidden;
+        width: 80%;
+        height: 80%;
+        left: 10%;
+        top: 10%;
+        border-bottom: 1px solid #FFF;
+        border-top: 1px solid #FFF;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: scale(0, 1);
+        -ms-transform: scale(0, 1);
+        transform: scale(0, 1);
+    }
+
+    .hovereffect:hover .overlay {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .hovereffect img {
+        display: block;
+        position: relative;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+    }
+
+    .hovereffect:hover img {
+        filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+        filter: brightness(0.6);
+        -webkit-filter: brightness(0.6);
+    }
+
+    .hovereffect h2 {
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        font-size: 17px;
+        background-color: transparent;
+        color: #FFF;
+        padding: 1em 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    .hovereffect a, .hovereffect p {
+        color: #FFF;
+        padding: 1em 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    .hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    /*discount*/
+    .new-product {
+        margin: 20px 0;
+        font-size: 20px;
+        text-align: center
     }
 </style>
 <body>
@@ -237,22 +351,51 @@
     </div>
 
     <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-    </a>
+    </a>-->
 </div>
 <!--banner end-->
 
-<div style="margin: 20px 0;font-size: 20px;text-align: center">
+<!--discount start-->
+<div class="row discount">
+    <div class="col-md-6">
+        <div class="hovereffect">
+            <img class="img-responsive" src="${ctx}/static/img/discount-banner1.jpg" alt="">
+            <div class="overlay">
+                <h2>折扣商品</h2>
+                <p>
+                    <a href="#">查看</a>
+                </p>
+            </div>
+        </div>
+        <!--<a href="#"><img src="${ctx}/static/img/discount-banner1.jpg"></a>-->
+    </div>
+    <div class="col-md-6">
+        <div class="hovereffect">
+            <img class="img-responsive" src="${ctx}/static/img/discount-banner2.jpg" alt="">
+            <div class="overlay">
+                <h2>折扣椅子</h2>
+                <p>
+                    <a href="#">查看</a>
+                </p>
+            </div>
+        </div>
+        <!--<a href="#"><img src="${ctx}/static/img/discount-banner2.jpg"></a>-->
+    </div>
+</div>
+<!--discount end-->
+
+<div class="new-product">
     新款
 </div>
 <!--product start-->
-<div class="row" style="width: 1150px;margin: 0 auto;">
+<div class="row product-div">
     <% for(product in products){ %>
     <div class="col-md-3" style="margin-bottom: 20px">
         <div class="product caption-style-4">
@@ -274,27 +417,41 @@
         </div>
     </div>
     <%}%>
-
-</div>
-
-<div  style="background: #252531; padding: 50px 0 20px 0;">
-    <div class="container text-center">
-        <div class="social" style="visibility: visible; margin-bottom: 50px;">
-            <ul style="list-style: none;">
-                <li><a href="#"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-                <li><a href="#"><i class="fa fa-qrcode"></i></a></li>
-                <li><a href="#"><i class="fa fa-phone"></i></a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
-            </ul>
-        </div>
-        <div class="fnav">
-            <p style="color: #ada8a8;">© 2017 zc741. All rights reserved.</p>
-        </div>
-    </div>
 </div>
 <!--product end-->
+<div class="new-product">
+    热销产品
+</div>
+<!--product start-->
+<div class="row product-div">
+    <% for(product in products){ %>
+    <div class="col-md-3" style="margin-bottom: 20px">
+        <div class="product caption-style-4">
+            <li>
+                <a href="#">
+                    <img src="${product.headImage}">
+                    <div class="caption">
+                        <div class="blur"></div>
+                        <div class="caption-text">
+                            <h1>查看</h1>
+                            <p>${product.introduce}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+            <span class="product-name">${product.productName}</span>
+            <span class="product-price">￥${product.price}</span>
+        </div>
+    </div>
+    <%}%>
+</div>
+<!--product end-->
+
+<!--footer start-->
+
 <% include("../layout/footer.html"){} %>
+
 <script>
     $(".item:first").addClass("active");
 

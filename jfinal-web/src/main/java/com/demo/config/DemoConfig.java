@@ -29,7 +29,7 @@ public class DemoConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/home",HomeController.class);
+        me.add("/",HomeController.class);
         me.add("/product",ProductController.class);
         me.add("/user",UserController.class);
     }

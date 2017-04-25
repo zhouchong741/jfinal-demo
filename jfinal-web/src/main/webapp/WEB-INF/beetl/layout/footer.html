@@ -1,2 +1,87 @@
+<style>
+    .social ul li {
+        display: inline-block;
+        margin: 0 20px;
+    }
+
+    .social i.fa {
+        font-size: 26px;
+        padding: 4px;
+        color: #cab17a;
+        transition: all 0.3s;
+    }
+
+    .social i.fa:hover {
+        font-size: 26px;
+        padding: 4px;
+        color: #FFFFFF;
+        transition: all 0.3s;
+    }
+
+    .social ul li a {
+        color: #cab17a;
+        cursor: pointer;
+    }
+
+</style>
+
+<div style="background: #252531; padding: 50px 0 20px 0;">
+    <div class="container text-center">
+        <div class="social" style="visibility: visible; margin-bottom: 50px;">
+            <ul style="list-style: none;">
+                <li>
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-placement="top"
+                       data-html='true'
+                       data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
+                        <i class="fa fa-weixin" aria-hidden="true"></i>
+                    </a>
+
+                </li>
+                <li>
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-placement="top"
+                       data-html='true'
+                       data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
+                        <i class="fa fa-weibo"></i></a>
+                </li>
+                <li>
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-placement="top"
+                       data-html='true'
+                       data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
+                        <i class="fa fa-qrcode"></i></a>
+                </li>
+                <li>
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-placement="top"
+                       data-html='true'
+                       data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
+                        <i class="fa fa-phone"></i></a>
+                </li>
+                <li>
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-placement="top"
+                       data-html='true'
+                       data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
+                        <i class="fa fa-map-marker"></i></a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="fnav">
+            <p style="color: #ada8a8;">© 2017 zc741. All rights reserved.</p>
+        </div>
+    </div>
+</div>
+<!--footer end-->
 <script src="${ctx}/static/js/jquery-3.2.1.min.js"></script>
 <script src="${ctx}/static/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
+    $(".show").click(function () {
+        $(this).popover('toggle');
+    });
+</script>
