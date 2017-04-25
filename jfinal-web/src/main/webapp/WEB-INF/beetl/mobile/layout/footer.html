@@ -1,29 +1,56 @@
 <style>
-    .footer div{
-        padding: 1px 10px;
+    .footer div {
+        padding: 5px 10px;
     }
-    .footer div i{
+
+    .footer div span {
+        display: block;
+    }
+
+    .footer div i {
         font-size: 25px;
         font-weight: 300;
+    }
+
+    .back-div {
+        margin: 0 12px;
+        padding: 0 !important;
+        color: #333;
     }
 </style>
 <div class="footer"
      style="background: #FFFFFF; text-align: center;bottom: 0; width: 100%; height:50px; display: block;position: fixed;">
     <div class="col-xs-3">
-        <i class="fa fa-home"></i>
-        <div>首页</div>
+        <a href="#">
+            <div class="back-div nav-home">
+                <i class="fa fa-home"></i>
+                <span>首页</span>
+            </div>
+        </a>
     </div>
     <div class="col-xs-3 ">
-        <i class="fa fa-navicon"></i>
-        <div>产品</div>
+        <a href="#">
+            <div class="back-div nav-product">
+                <i class="fa fa-navicon"></i>
+                <span>产品</span>
+            </div>
+        </a>
     </div>
     <div class="col-xs-3 ">
-        <i class="fa fa-shopping-cart"></i>
-        <div>购物车</div>
+        <a href="#">
+            <div class="back-div nav-shopping">
+                <i class="fa fa-shopping-cart"></i>
+                <span>购物车</span>
+            </div>
+        </a>
     </div>
     <div class="col-xs-3 ">
-        <i class="fa fa-user"></i>
-        <div>我的</div>
+        <a href="#">
+            <div class="back-div nav-user">
+                <i class="fa fa-user"></i>
+                <span>我的</span>
+            </div>
+        </a>
     </div>
 </div>
 

@@ -16,8 +16,10 @@ public class HomeController extends BaseController {
         setAttr("banners", banners);
         List<Image> discounts = Image.dao.getDiscount(ImageType.discount);
         setAttr("discounts", discounts);
-        List<Product> products = Product.dao.getProducts();
-        setAttr("products", products);
+        List<Image> news = Image.dao.getNews(ImageType.news);
+        setAttr("news", news);
+        List<Image> hots = Image.dao.gethot(ImageType.hot);
+        setAttr("hots",hots);
         if (isMobile) {
             render("/mobile/home/home.html");
         } else {

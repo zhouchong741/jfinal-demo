@@ -5,7 +5,9 @@ package com.pojo;
  */
 public enum  ImageType {
     discount(1,"discount"),
-    banner(2,"banner");
+    banner(2,"banner"),
+    news(3,"news"),
+    hot(4,"hot");
 
     private int type;
     private String text;

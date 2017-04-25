@@ -6,7 +6,6 @@ import com.jfinal.plugin.activerecord.Model;
 import java.util.List;
 
 /**
- *
  * Created by zc741 on 2017/4/23.
  */
 public class Image extends Model<Image> {
@@ -27,7 +26,27 @@ public class Image extends Model<Image> {
      * @param type
      * @return
      */
-    public List<Image> getDiscount(ImageType type){
+    public List<Image> getDiscount(ImageType type) {
+        String sql = "SELECT * FROM image WHERE type='" + type + "'";
+        return dao.find(sql);
+    }
+
+    /**
+     * news
+     * @param type
+     * @return
+     */
+    public List<Image> getNews(ImageType type) {
+        String sql = "SELECT * FROM image WHERE type='" + type + "'";
+        return dao.find(sql);
+    }
+
+    /**
+     * hot
+     * @param type
+     * @return
+     */
+    public List<Image> gethot(ImageType type) {
         String sql = "SELECT * FROM image WHERE type='" + type + "'";
         return dao.find(sql);
     }
