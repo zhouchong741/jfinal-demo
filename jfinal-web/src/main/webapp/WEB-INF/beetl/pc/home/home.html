@@ -2,6 +2,9 @@
 <title>首页</title>
 </head>
 <style>
+    body{
+        padding-top: 30px;
+    }
     .main-menu ul li {
         display: inline-block;
         position: relative;
@@ -349,45 +352,24 @@
         </div>
         <%}%>
     </div>
-
-    <!-- Controls -->
-    <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>-->
 </div>
 <!--banner end-->
 
 <!--discount start-->
 <div class="row discount">
+    <%for(discount in discounts){%>
     <div class="col-md-6">
         <div class="hovereffect">
-            <img class="img-responsive" src="${ctx}/static/img/discount-banner1.jpg" alt="">
+            <img class="img-responsive" src="${discount.imgUrl}" alt="">
             <div class="overlay">
-                <h2>折扣商品</h2>
+                <h2>${discount.imgName}</h2>
                 <p>
-                    <a href="#">查看</a>
+                    <a href="${discount.linkUrl}">查看</a>
                 </p>
             </div>
         </div>
-        <!--<a href="#"><img src="${ctx}/static/img/discount-banner1.jpg"></a>-->
     </div>
-    <div class="col-md-6">
-        <div class="hovereffect">
-            <img class="img-responsive" src="${ctx}/static/img/discount-banner2.jpg" alt="">
-            <div class="overlay">
-                <h2>折扣椅子</h2>
-                <p>
-                    <a href="#">查看</a>
-                </p>
-            </div>
-        </div>
-        <!--<a href="#"><img src="${ctx}/static/img/discount-banner2.jpg"></a>-->
-    </div>
+    <%}%>
 </div>
 <!--discount end-->
 

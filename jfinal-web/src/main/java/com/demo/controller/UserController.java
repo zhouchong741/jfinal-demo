@@ -1,14 +1,13 @@
 package com.demo.controller;
 
-import com.jfinal.core.Controller;
 import com.model.User;
 
 /**
  * Created by xxx on 2017/4/24.
  */
-public class UserController extends Controller {
+public class UserController extends BaseController {
     public void index(){
-        render("/user/user.html");
+        render("/pc/user/user.html");
     }
 
     // login

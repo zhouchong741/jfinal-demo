@@ -1,0 +1,135 @@
+<% include("../layout/header.html"){} %>
+<title>首页</title>
+<style>
+    .row {
+        margin: 15px 0 0 0;
+    }
+
+    .row img {
+        width: 100%;
+    }
+
+    .new-product {
+        text-align: center;
+    }
+
+    .product {
+        display: inline-block;
+    }
+
+    .product li {
+        list-style: none;
+    }
+
+    .product li a img {
+        height: 150px;
+    }
+
+    .price-name div{
+        padding: 0 5px;
+    }
+    .product-name-div{
+        text-align: end;
+    }
+    .product-name {
+        width: 100%;
+    }
+    .product-price{
+        color: #cab17a;
+    }
+</style>
+<body>
+<header>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <% for(banner in banners){%>
+            <div class="item">
+                <a href="${banner.linkUrl}" style="width: 100%;height: 700px">
+                    <img class="img-responsive" src="${banner.imgUrl}" alt="...">
+                    <div class="carousel-caption">
+                        ${banner.introduce}
+                    </div>
+                </a>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</header>
+<!--discount start-->
+<div class="row">
+    <%for(discount in discounts){%>
+    <div class="col-xs-6">
+        <img src="${discount.imgUrl}" alt="">
+    </div>
+    <%}%>
+</div>
+<!--discount end-->
+
+<!--new product start-->
+<div class="new-product">
+    新款产品
+</div>
+<div class="row">
+    <% for(product in products){ %>
+    <div class="col-xs-6" style="margin-bottom: 10px">
+        <div class="product">
+            <li>
+                <a href="#">
+                    <img src="${product.headImage}">
+                </a>
+            </li>
+            <div class="row price-name" style="margin: 2px 0;">
+                <div class="col-xs-6">
+                    <span class="product-price">￥${product.price}</span>
+                </div>
+                <div class="col-xs-6 product-name-div">
+                    <span class="product-name">${product.productName}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</div>
+<!--new product start-->
+
+<!--hot product start-->
+<div class="new-product">
+    热销产品
+</div>
+<div class="row">
+    <% for(product in products){ %>
+    <div class="col-xs-6" style="margin-bottom: 20px">
+        <div class="product">
+            <li>
+                <a href="#">
+                    <img src="${product.headImage}">
+                </a>
+            </li>
+            <div class="row price-name" style="margin: 2px 0;">
+                <div class="col-xs-6">
+                    <span class="product-price">￥${product.price}</span>
+                </div>
+                <div class="col-xs-6 product-name-div">
+                    <span class="product-name">${product.productName}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</div>
+<!--hot product end-->
+<% include("../layout/footer.html"){} %>
+<script>
+    $(".item:first").addClass("active");
+
+</script>
+</body>
+</html>

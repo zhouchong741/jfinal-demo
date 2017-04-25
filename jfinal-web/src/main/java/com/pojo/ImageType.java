@@ -4,7 +4,7 @@ package com.pojo;
  * Created by zc741 on 2017/4/23.
  */
 public enum  ImageType {
-    product(1,"product"),
+    discount(1,"discount"),
     banner(2,"banner");
 
     private int type;

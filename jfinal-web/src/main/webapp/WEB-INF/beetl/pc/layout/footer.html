@@ -30,13 +30,12 @@
         <div class="social" style="visibility: visible; margin-bottom: 50px;">
             <ul style="list-style: none;">
                 <li>
-                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
-                       data-placement="top"
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true" data-trigger="focus"
+                       data-placement="left"
                        data-html='true'
                        data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
                         <i class="fa fa-weixin" aria-hidden="true"></i>
                     </a>
-
                 </li>
                 <li>
                     <a data-container="body" class="show" data-toggle="popover" data-animation="true"
@@ -61,7 +60,7 @@
                 </li>
                 <li>
                     <a data-container="body" class="show" data-toggle="popover" data-animation="true"
-                       data-placement="top"
+                       data-placement="right"
                        data-html='true'
                        data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
                         <i class="fa fa-map-marker"></i></a>
@@ -84,4 +83,5 @@
     $(".show").click(function () {
         $(this).popover('toggle');
     });
+
 </script>

@@ -12,7 +12,22 @@ import java.util.List;
 public class Image extends Model<Image> {
     public final static Image dao = new Image();
 
+    /**
+     * banner 图
+     * @param type
+     * @return
+     */
     public List<Image> getBanner(ImageType type) {
+        String sql = "SELECT * FROM image WHERE type='" + type + "'";
+        return dao.find(sql);
+    }
+
+    /**
+     * discount 图
+     * @param type
+     * @return
+     */
+    public List<Image> getDiscount(ImageType type){
         String sql = "SELECT * FROM image WHERE type='" + type + "'";
         return dao.find(sql);
     }
