@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductController extends BaseController {
     public void index() {
         boolean isMobile = isMobile();
-        List<Product> chairs = Product.dao.getProducts(ProductType.chair);
+        List<Product> chairs = Product.dao.getChairs(ProductType.chair);
         setAttr("chairs", chairs);
         List<Product> sofas = Product.dao.getSofas(ProductType.sofa);
         setAttr("sofas", sofas);

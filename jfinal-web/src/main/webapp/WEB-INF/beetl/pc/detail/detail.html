@@ -1,12 +1,132 @@
 <% include("../layout/header.html"){} %>
-<title></title>
+<title>${product.productName}</title>
 </head>
+<style>
+    .introduce-div {
+        width: 1150px;
+        margin: 50px auto;
+    }
+
+    .head-img {
+        width: 100%;
+        height: 400px;
+    }
+
+    .p-name {
+        font-size: 25px;
+    }
+
+    .p-introduce {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .p-itemNo {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .p-brand {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .p-price {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .p-remarks {
+        margin-top: 120px;
+        color: #9e9aa2;
+        text-align: end;
+    }
+
+    .product-intro {
+        padding-left: 50px;
+    }
+
+    .content-img {
+        width: 100%;
+    }
+
+    .recommend-product {
+        margin: 10px 0;
+    }
+
+    .recommend-div {
+        padding: 0;
+    }
+
+    .recommend-img {
+        width: 100%;
+        height:100px;
+    }
+
+    .commend-intro{
+        font-size: 10px;
+    }
+    .commend-intro div{
+        margin-bottom: 10px;
+    }
+    .commend-introduce{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+</style>
 <body>
 <% include("../layout/navigator.html"){} %>
-<div>
-    ${product}
-</div>
+<div class="introduce-div">
+    <div class="row">
+        <div class="col-md-8">
+            <img src="${product.headImage}" class="img-thumbnail img-responsive head-img">
+        </div>
+        <div class="col-md-4 product-intro">
+            <div class="p-name">${product.productName}</div>
+            <div class="p-introduce">${product.introduce}</div>
+            <div class="p-itemNo">货号：${product.itemNumber}</div>
+            <div class="p-brand">品牌：${product.brand}</div>
+            <div class="p-price">￥${product.price}</div>
+            <div class="p-size">
+                <span>尺寸：${product.length} x</span>
+                <span>${product.width} x</span>
+                <span>${product.height} 厘米</span>
+            </div>
+            <div class="p-remarks">注：此商品价格以门店销售价格为准</div>
+        </div>
+    </div>
 
+    <div style="margin: 80px"></div>
+
+    <div class="product-content">
+        <div class="row">
+            <div class="col-md-3">
+                <% for(recommend in recommends){ %>
+                <div class="recommend-product row">
+                    <div class="col-md-6 recommend-div">
+                        <a href="${ctx}/detail?productId=${recommend.productId}">
+                            <img class="recommend-img" src="${recommend.headImage}">
+                        </a>
+                    </div>
+                    <div class="col-md-6 commend-intro">
+                        <div>${recommend.productName}</div>
+                        <div class="commend-introduce">${recommend.introduce}</div>
+                        <div>￥${recommend.price}</div>
+                        <div>${recommend.itemNumber}</div>
+                    </div>
+                </div>
+                <%}%>
+            </div>
+            <div class="col-md-9">
+                <img class="content-img" src="${product.content}">
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 <% include("../layout/footer.html"){} %>
