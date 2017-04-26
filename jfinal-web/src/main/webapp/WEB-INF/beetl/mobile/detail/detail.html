@@ -1,0 +1,51 @@
+<% include("../layout/header.html"){} %>
+<title>${product.productName}</title>
+</head>
+<style>
+    .row {
+        margin: 0;
+        padding: 10px 5px;
+        background: #eea236;
+    }
+
+    .col-xs-4 {
+        padding: 0;
+    }
+
+    .col-xs-4 a {
+        color: #000000;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    .share {
+        text-align: end;
+    }
+</style>
+<body>
+<div class="row">
+    <div class="col-xs-4">
+        <a href="javascript:history.go(-1);">
+            <i class="fa fa-chevron-left"> 返回</i>
+        </a>
+    </div>
+    <div class="col-xs-4 title">
+        ${product.productName}
+    </div>
+    <div class="col-xs-4 share">
+        <a href="#">
+            <i class="fa fa-share"></i>
+        </a>
+    </div>
+</div>
+
+<% include("../layout/footer.html"){} %>
+<script>
+    $(".nav-product").css("color", "#eea236")
+</script>
+</body>
+</html>

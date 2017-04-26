@@ -1,8 +1,95 @@
 <% include("../layout/header.html"){} %>
 <title>分类</title>
 </head>
-<body>
+<style>
+    body {
+        padding-bottom: 50px;
+    }
 
+    .category-title {
+        text-align: center;
+    }
+
+    .row {
+        margin: 10px 0;
+    }
+
+    .col-xs-5 {
+        padding: 0;
+    }
+
+    .col-xs-7 {
+        padding: 0;
+    }
+
+    .col-xs-7 div {
+        margin: 10px 0;
+        padding-left: 10px;
+        font-size: 10px;
+    }
+
+    .headImg {
+        width: 100%;
+        height: 120px;
+    }
+
+    .product-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .product-intro {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+</style>
+<body>
+<div class="category-title">
+    ∙∙∙∙∙∙ 椅子 ∙∙∙∙∙∙
+</div>
+<% for(chair in chairs){ %>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="${ctx}/detail?productId=${chair.productId}">
+            <img class="headImg" src="${chair.headImage}">
+        </a>
+    </div>
+    <div class="col-xs-7">
+        <div class="product-name">${chair.productName}</div>
+        <div class="product-intro">${chair.introduce}</div>
+        <div class="product-price">${chair.price}</div>
+        <div class="product-brand">${chair.brand}</div>
+    </div>
+</div>
+<%}%>
+
+<div class="category-title">
+    ∙∙∙∙∙∙ 沙发 ∙∙∙∙∙∙
+</div>
+<% for(sofa in sofas){ %>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="${ctx}/detail?productId=${sofa.productId}">
+            <img class="headImg" src="${sofa.headImage}">
+        </a>
+    </div>
+    <div class="col-xs-7">
+        <div class="product-name">${sofa.productName}</div>
+        <div class="product-intro">${sofa.introduce}</div>
+        <div class="product-price">${sofa.price}</div>
+        <div class="product-brand">${sofa.brand}</div>
+    </div>
+</div>
+<%}%>
 <% include("../layout/footer.html"){} %>
+<script>
+    $(".nav-product").css("color", "#eea236")
+</script>
 </body>
 </html>
