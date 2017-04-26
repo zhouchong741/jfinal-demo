@@ -1,4 +1,5 @@
 <% include("../layout/header.html"){} %>
+<link href="${ctx}/static/css/share.min.css" rel="stylesheet">
 <title>${product.productName}</title>
 </head>
 <style>
@@ -37,7 +38,7 @@
     }
 
     .p-remarks {
-        margin-top: 120px;
+        margin-top: 60px;
         color: #9e9aa2;
         text-align: end;
     }
@@ -60,16 +61,18 @@
 
     .recommend-img {
         width: 100%;
-        height:100px;
+        height: 100px;
     }
 
-    .commend-intro{
+    .commend-intro {
         font-size: 10px;
     }
-    .commend-intro div{
+
+    .commend-intro div {
         margin-bottom: 10px;
     }
-    .commend-introduce{
+
+    .commend-introduce {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -95,6 +98,7 @@
                 <span>${product.width} x</span>
                 <span>${product.height} 厘米</span>
             </div>
+            <div class="social-share"></div>
             <div class="p-remarks">注：此商品价格以门店销售价格为准</div>
         </div>
     </div>
@@ -125,11 +129,26 @@
                 <img class="content-img" src="${product.content}">
             </div>
         </div>
-
     </div>
 </div>
 
 
 <% include("../layout/footer.html"){} %>
+<script src="${ctx}/static/js/social-share.min.js"></script>
+<script>
+    var $config = {
+        url: 'http://www.jingdongjiaju.cn/detail?productId=${product.productId}', // 网址，默认使用 window.location.href
+        source: 'jingdongjiaju.cn', // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+        title: '$', // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
+        description: '${product.introduce}', // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+        image: '${product.headImage}', // 图片, 默认取网页中第一个img标签
+        sites: ['qzone', 'qq', 'weibo', 'wechat', 'douban'], // 启用的站点
+        disabled: ['google', 'facebook', 'twitter'], // 禁用的站点
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+    };
+
+    $('.social-share').share($config);
+</script>
 </body>
 </html>
