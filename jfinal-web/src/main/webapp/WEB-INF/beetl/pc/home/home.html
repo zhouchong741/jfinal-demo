@@ -2,46 +2,6 @@
 <title>首页</title>
 </head>
 <style>
-    body{
-        padding-top: 30px;
-    }
-    .main-menu ul li {
-        display: inline-block;
-        position: relative;
-        list-style: outside none none;
-    }
-
-    .main-menu-area {
-        display: inline-block;
-        margin-bottom: -5px;
-        padding: 15px 0 0;
-        text-align: center;
-        width: 100%;
-
-    }
-
-    .main-menu .active {
-        color: #cab17a;
-        transition: all 300ms ease-in 0s;
-    }
-
-    .main-menu ul li a {
-        display: block;
-        font-size: 15px;
-        font-weight: 500;
-        letter-spacing: 2px;
-        line-height: 30px;
-        padding: 10px 24px;
-        position: relative;
-        color: #929aa0;
-        text-transform: uppercase;
-        text-decoration: none;
-    }
-
-    .main-menu ul li a:hover {
-        color: #cab17a;
-    }
-
     .item img {
         width: 100%;
         height: 700px !important;
@@ -274,61 +234,7 @@
     }
 </style>
 <body>
-<header>
-    <div class="header-middle">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12 hidden-xs">
-                    <div class="search-block-top">
-                        <!--do something-->
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="pos-logo">
-                        <a href="#">
-                            <img class="logo img-responsive" src="${ctx}/static/img/logo.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-menu-area hidden-xs hidden-sm" style="">
-        <div class="container" style="width: 1150px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="main-menu">
-                        <nav style="text-align: center;">
-                            <ul style="list-style: outside none none;margin: 0;padding: 0;">
-                                <li>
-                                    <a class="active" href="#">首页</a>
-                                </li>
-                                <li>
-                                    <a href="#">一楼</a>
-                                </li>
-                                <li>
-                                    <a href="#">四楼</a>
-
-                                </li>
-                                <li>
-                                    <a href="#">五楼</a>
-
-                                </li>
-                                <li>
-                                    <a href="#">关于我们</a>
-                                </li>
-                                <li>
-                                    <a href="#">留言</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+<% include("../layout/navigator.html"){} %>
 
 <!--banner start-->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -435,8 +341,10 @@
 <% include("../layout/footer.html"){} %>
 
 <script>
+    // 控制 banner
     $(".item:first").addClass("active");
-
+    // 设置首页聚焦
+    $(".nav-home").addClass("active");
 </script>
 
 </body>

@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.model.Product;
+import com.pojo.ProductType;
 
 import java.util.List;
 
@@ -9,8 +10,15 @@ import java.util.List;
  */
 public class ProductController extends BaseController {
     public void index() {
-        List<Product> products = Product.dao.getProducts();
-        setAttr("products", products);
-        render("/pc/product/product.html");
+        boolean isMobile = isMobile();
+        List<Product> chairs = Product.dao.getProducts(ProductType.chair);
+        setAttr("chairs", chairs);
+        List<Product> sofas = Product.dao.getSofas(ProductType.sofa);
+        setAttr("sofas", sofas);
+        if (isMobile){
+            render("/pc/product/product.html");
+        }else {
+            render("/mobile/product/product.html");
+        }
     }
 }

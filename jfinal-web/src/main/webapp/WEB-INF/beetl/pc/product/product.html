@@ -1,10 +1,18 @@
 <% include("../layout/header.html"){} %>
+<title>分类</title>
 <style>
-    .row {
+    .row-div {
         width: 1150px;
         margin: 0 auto;
     }
 
+    .product {
+        margin: 20px 0 !important;
+    }
+
+    .product li a img{
+        width:100%;
+    }
     .product span {
         display: block;
     }
@@ -70,7 +78,7 @@
 
     .caption-style-4 img {
         height: 200px;
-        width: 250px;
+        width: 257.5px;
         -webkit-transition: all 0.25s ease-in-out;
         -moz-transition: all 0.25s ease-in-out;
         -o-transition: all 0.25s ease-in-out;
@@ -81,7 +89,7 @@
     .caption-style-4 .blur {
         background-color: rgba(0, 0, 0, 0.65);
         height: 200px;
-        width: 250px;
+        width: 257.5px;
         z-index: 5;
         position: absolute;
     }
@@ -96,38 +104,89 @@
         color: #fff;
         position: absolute;
         height: 200px;
-        width: 250px;
+        width: 257.5px;
         text-align: center;
         top: 50px;
     }
+
+    .category-div {
+        margin: 20px auto;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    .more {
+        position: relative;
+        text-align: end;
+        top: 50px;
+
+    }
 </style>
 <body>
+<% include("../layout/navigator.html"){} %>
 
-<div class="row">
-    <% for(product in products){ %>
+<!--分类一 start-->
+<div class="row row-div">
+    <div class="more">更多>>></div>
+    <div class="category-div">
+        ∙∙∙∙∙∙ 椅子 ∙∙∙∙∙∙
+    </div>
+    <% for(chair in chairs){ %>
     <div class="col-md-3">
         <div class="product caption-style-4">
             <li>
                 <a href="#">
-                    <img src="${product.headImage}">
+                    <img src="${chair.headImage}">
                     <div class="caption">
                         <div class="blur"></div>
                         <div class="caption-text">
                             <h1>查看</h1>
-                            <p>${product.introduce}</p>
+                            <p>${chair.introduce}</p>
                         </div>
                     </div>
                 </a>
             </li>
-
-            <span class="product-name">${product.productName}</span>
-            <span class="product-price">￥${product.price}</span>
+            <span class="product-name">${chair.productName}</span>
+            <span class="product-price">￥${chair.price}</span>
         </div>
     </div>
     <%}%>
-
 </div>
+<!--分类一 end-->
 
+<!--分类二 start-->
+<div class="row row-div">
+    <div class="more">更多>>></div>
+    <div class="category-div">
+        ∙∙∙∙∙∙ 沙发 ∙∙∙∙∙∙
+    </div>
+    <% for(sofa in sofas){ %>
+    <div class="col-md-3">
+        <div class="product caption-style-4">
+            <li>
+                <a href="#">
+                    <img src="${sofa.headImage}">
+                    <div class="caption">
+                        <div class="blur"></div>
+                        <div class="caption-text">
+                            <h1>查看</h1>
+                            <p>${sofa.introduce}</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <span class="product-name">${sofa.productName}</span>
+            <span class="product-price">￥${sofa.price}</span>
+        </div>
+    </div>
+    <%}%>
+</div>
+<!--分类二 end-->
 <% include("../layout/footer.html"){} %>
+<script>
+    // 设置分类聚焦
+    $(".nav-category").addClass("active");
+</script>
 </body>
 </html>
