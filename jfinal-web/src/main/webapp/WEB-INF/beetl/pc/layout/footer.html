@@ -23,6 +23,13 @@
         cursor: pointer;
     }
 
+    #to_top {
+
+    }
+
+    #to_top i:hover {
+        color: #cab17a;
+    }
 </style>
 
 <div style="background: #252531; padding: 50px 0 20px 0;">
@@ -30,7 +37,8 @@
         <div class="social" style="visibility: visible; margin-bottom: 50px;">
             <ul style="list-style: none;">
                 <li>
-                    <a data-container="body" class="show" data-toggle="popover" data-animation="true" data-trigger="focus"
+                    <a data-container="body" class="show" data-toggle="popover" data-animation="true"
+                       data-trigger="focus"
                        data-placement="left"
                        data-html='true'
                        data-content="<img style='width:100px;width:100px;' src='${ctx}/static/img/qrcode.png'/>">
@@ -73,6 +81,12 @@
         </div>
     </div>
 </div>
+
+<!--back to up-->
+<div id="to_top" style="font-size: 20px;color: #999; display: none; right: 50px; bottom: 50px; position: fixed; cursor: pointer;">
+        <i class="fa fa-long-arrow-up"></i>
+        <i class="fa fa-long-arrow-up"></i>
+</div>
 <!--footer end-->
 <script src="${ctx}/static/js/jquery-3.2.1.min.js"></script>
 <script src="${ctx}/static/js/bootstrap.min.js"></script>
@@ -84,4 +98,19 @@
         $(this).popover('toggle');
     });
 
+    window.onscroll = function () {
+        var distance = document.documentElement.scrollTop || document.body.scrollTop;
+        if (distance >= 200) {
+            document.getElementById('to_top').style.display = "";
+        } else {
+            document.getElementById('to_top').style.display = "none";
+        }
+        var toTop = document.getElementById("to_top");
+        toTop.onclick = function () {
+            //document.documentElement.scrollTop = document.body.scrollTop = 0;
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 500);
+        }
+    }
 </script>
