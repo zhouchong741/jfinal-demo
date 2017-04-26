@@ -1,5 +1,6 @@
 package com.demo.config;
 
+import com.demo.controller.DetailController;
 import com.demo.controller.ProductController;
 import com.demo.controller.HomeController;
 import com.demo.controller.UserController;
@@ -32,6 +33,7 @@ public class DemoConfig extends JFinalConfig {
         me.add("/",HomeController.class);
         me.add("/product",ProductController.class);
         me.add("/user",UserController.class);
+        me.add("/detail",DetailController.class);
     }
 
     @Override

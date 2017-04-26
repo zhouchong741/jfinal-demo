@@ -16,8 +16,13 @@ public class Product extends Model<Product> {
         return dao.find(sql);
     }
 
-    public List<Product> getSofas(ProductType type){
+    public List<Product> getSofas(ProductType type) {
         String sql = "SELECT * FROM product where type='" + type + "' ORDER BY createTime DESC limit 8";
         return dao.find(sql);
+    }
+
+    public Product getProduct(int productId) {
+        String sql = "SELECT * FROM product where productId=" + productId;
+        return dao.findFirst(sql);
     }
 }
