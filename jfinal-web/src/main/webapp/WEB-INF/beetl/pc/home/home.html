@@ -378,24 +378,24 @@
 </div>
 <!--product start-->
 <div class="row product-div">
-    <% for(product in products){ %>
+    <% for(new in news){ %>
     <div class="col-md-3" style="margin-bottom: 20px">
         <div class="product caption-style-4">
             <li>
                 <a href="#">
-                    <img src="${product.headImage}">
+                    <img src="${new.imgUrl}">
                     <div class="caption">
                         <div class="blur"></div>
                         <div class="caption-text">
                             <h1>查看</h1>
-                            <p>${product.introduce}</p>
+                            <p>${new.introduce}</p>
                         </div>
                     </div>
                 </a>
             </li>
 
-            <span class="product-name">${product.productName}</span>
-            <span class="product-price">￥${product.price}</span>
+            <span class="product-name">${new.imgName}</span>
+            <span class="product-price">￥${new.price}</span>
         </div>
     </div>
     <%}%>
@@ -406,24 +406,24 @@
 </div>
 <!--product start-->
 <div class="row product-div">
-    <% for(product in products){ %>
+    <% for(hot in hots){ %>
     <div class="col-md-3" style="margin-bottom: 20px">
         <div class="product caption-style-4">
             <li>
                 <a href="#">
-                    <img src="${product.headImage}">
+                    <img src="${hot.imgUrl}">
                     <div class="caption">
                         <div class="blur"></div>
                         <div class="caption-text">
                             <h1>查看</h1>
-                            <p>${product.introduce}</p>
+                            <p>${hot.introduce}</p>
                         </div>
                     </div>
                 </a>
             </li>
 
-            <span class="product-name">${product.productName}</span>
-            <span class="product-price">￥${product.price}</span>
+            <span class="product-name">${hot.imgName}</span>
+            <span class="product-price">￥${hot.price}</span>
         </div>
     </div>
     <%}%>

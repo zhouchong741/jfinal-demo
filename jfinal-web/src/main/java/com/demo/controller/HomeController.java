@@ -1,7 +1,6 @@
 package com.demo.controller;
 
 import com.model.Image;
-import com.model.Product;
 import com.pojo.ImageType;
 
 import java.util.List;
