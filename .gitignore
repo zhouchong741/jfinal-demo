@@ -1,6 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-.gitignore
-.idea/*
+/.idea
 jfinal-web/.rebel-remote.xml.bak
 jfinal-web/.rebel.xml.bak
 jfinal-web/target/
