@@ -140,8 +140,9 @@
 <% include("../layout/footer.html"){} %>
 <script src="${ctx}/static/js/jquery.share.min.js"></script>
 <script>
+    var domain = window.location.href;
     var $config = {
-        url: 'http://www.jingdongjiaju.cn/detail?productId=${product.productId}',
+        url: domain,
         source: 'jingdongjiaju.cn',
         title: '${product.productName}',
         description: '${product.introduce}',
