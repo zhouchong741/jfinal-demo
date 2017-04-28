@@ -1,9 +1,6 @@
 package com.demo.config;
 
-import com.demo.controller.DetailController;
-import com.demo.controller.ProductController;
-import com.demo.controller.HomeController;
-import com.demo.controller.UserController;
+import com.demo.controller.*;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
@@ -30,19 +27,20 @@ public class DemoConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/",HomeController.class);
-        me.add("/product",ProductController.class);
-        me.add("/user",UserController.class);
-        me.add("/detail",DetailController.class);
+        me.add("/", HomeController.class);
+        me.add("/product", ProductController.class);
+        me.add("/user", UserController.class);
+        me.add("/detail", DetailController.class);
+        me.add("/message", MessageController.class);
     }
 
     @Override
     public void configPlugin(Plugins me) {
         //配置数据库连接池插件
-        C3p0Plugin c3p0Plugin=new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("username"), PropKit.get("password"));
+        C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("username"), PropKit.get("password"));
         me.add(c3p0Plugin);
 
-        ActiveRecordPlugin arp=new ActiveRecordPlugin(c3p0Plugin);
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
         me.add(arp);
 
         //arp.addMapping("user",Image.class);

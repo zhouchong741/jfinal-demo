@@ -9,5 +9,6 @@ public class _MappingKit {
     public static void mapping(ActiveRecordPlugin arp){
         arp.addMapping("image","id", Image.class);
         arp.addMapping("product","productId",Product.class);
+        arp.addMapping("message","id",Message.class);
     }
 }
