@@ -69,11 +69,6 @@
             <classifier>jdk15</classifier>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.2</version>
-        </dependency>
     </dependencies>
     <build>
         <finalName>jfinal-web</finalName>
