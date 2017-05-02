@@ -6,20 +6,30 @@ import com.model.User;
  * Created by xxx on 2017/4/24.
  */
 public class UserController extends BaseController {
-    public void index(){
+    public void index() {
         render("/pc/user/user.html");
     }
 
-    // login
-    public void login(){
+    // login check
+    public void loginCheck() {
         User user = new User();
         String userName = getPara("userName");
         String password = getPara("password");
         boolean info = user.isExist(userName, password);
-        if (info){
+        if (info) {
             renderText("1");
-        }else {
+        } else {
             renderText("0");
+        }
+    }
+
+    // user center
+    public void login() {
+        boolean isMobile = isMobile();
+        if (isMobile){
+            render("/mobile/user/login.html");
+        }else {
+            render("/pc/user/login.html");
         }
     }
 }
