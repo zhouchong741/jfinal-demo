@@ -1,3 +1,2 @@
-# jfinal-demo
-use jfinal beetl
-一个商品展示平台
+# jfinal-shop
+https://img.shields.io/badge/jfinal--shop-beta-brightgreen.svg
