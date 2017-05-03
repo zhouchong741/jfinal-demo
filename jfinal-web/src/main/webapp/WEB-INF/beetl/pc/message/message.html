@@ -1,4 +1,5 @@
 <% include("../layout/header.html"){} %>
+
 <title>留言</title>
 </head>
 <style>
@@ -110,6 +111,11 @@
     </div>
 </div>
 
+<form id="uploadForm" enctype="multipart/form-data" method="POST">
+    <input id="uploadInput" type="file" name="uploadFile" style="height:32px" multiple>
+    <button type="submit" class="upload">upload</button>
+</form>
+
 <!-- Modal -->
 <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel">
@@ -131,8 +137,19 @@
     </div>
 </div>
 
+<script src="${ctx}/static/js/jquery.form.min.js"></script>
 <% include("../layout/footer.html"){} %>
 <script>
+    $(".upload").click(function () {
+        $(document).ready(function() {
+            $("#myArticleForm").ajaxForm({
+                dataType: "json"
+                , success: function(ret) {}
+                , error: function(ret) {}
+            });
+        });
+    });
+
     // 设置首页聚焦
     $(".nav-message").addClass("active");
 

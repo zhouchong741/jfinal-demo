@@ -69,6 +69,11 @@
             <classifier>jdk15</classifier>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>cos</artifactId>
+            <version>26Dec2008</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>jfinal-web</finalName>

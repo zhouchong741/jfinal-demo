@@ -136,7 +136,26 @@
 
     $(".submit-true").click(function () {
         $('#myModal').modal('hide');
-    })
+    });
+
+    // Enter 事件
+    document.onkeydown = function(event) {
+        var code;
+        if (!event) {
+            event = window.event; //针对ie浏览器
+            code = event.keyCode;
+            if (code == 13) {
+                $(".register").click();
+            }
+        } else {
+            //针对遵循w3c标准的浏览器，如Firefox
+            code = event.keyCode;
+            if (code == 13) {
+                $(".register").click();
+            }
+        }
+    };
+
 </script>
 </body>
 </html>

@@ -32,6 +32,7 @@ public class DemoConfig extends JFinalConfig {
         me.add("/user", UserController.class);
         me.add("/detail", DetailController.class);
         me.add("/message", MessageController.class);
+        me.add("/file",FileController.class);
     }
 
     @Override
