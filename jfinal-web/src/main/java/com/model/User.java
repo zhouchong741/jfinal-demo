@@ -9,8 +9,20 @@ import com.jfinal.plugin.activerecord.Model;
 public class User extends Model<User> {
     public final static User dao = new User();
 
+    /**
+     * 当前用户是否存在
+     *
+     * @param userName
+     * @param password
+     * @return
+     */
     public boolean isExist(String userName, String password) {
         String sql = "SELECT EXISTS(select * from user where userName='" + userName + "' and password='" + password + "')";
-        return 1== (Db.queryLong(sql));
+        return 1 == (Db.queryLong(sql));
+    }
+
+    public boolean isExistPhoneNumber(String phoneNumber) {
+        String sql = "SELECT EXISTS(select * from user where phoneNumber = " + phoneNumber + ")";
+        return 1 == (Db.queryLong(sql));
     }
 }

@@ -3,7 +3,7 @@
 <style>
     .login-div {
         width: 50%;
-        margin: 30% auto;
+        margin: 10% auto 30% auto;
     }
 
     .login-div input {
@@ -13,13 +13,35 @@
     .form-control:focus {
         border-color: #eea236;
     }
+
+    .login {
+        width: 100%;
+    }
 </style>
 <body>
+<% include("../layout/navigator.html"){} %>
 <div style="width: 1150px;margin: 0 auto; text-align: center">
     <div class="login-div">
-        <input type="text" class="form-control name" placeholder="Username" aria-describedby="sizing-addon2">
-        <input type="password" class="form-control password" placeholder="Password" aria-describedby="sizing-addon2">
-        <button type="button" class="btn btn-warning login">Submit</button>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control userName" id="inputUserName" placeholder="用户名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">密&emsp;码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control password" id="inputPassword3" placeholder="密码">
+                </div>
+            </div>
+            <a href="${ctx}/user/register"><p class="text-danger text-right">注册</p></a>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-warning login">登录</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -27,19 +49,20 @@
 <script>
     $(".login").click(function () {
         var data = {};
-        data.userName = $(".name").val();
+        data.userName = $(".userName").val();
         data.password = $(".password").val();
         $.ajax({
             url: "${ctx}/user/loginCheck",
             type: "post",
             cache: false,
             data: data,
-            cache: false,
             dataType: "json",
             success: function (result) {
                 if (result == "1") {
                     console.log("登录成功");
-                    //todo 跳转到逻辑界面
+                    setTimeout(function () {
+                        window.location.href = ("${ctx}/user");
+                    }, 1000);
                 } else {
                     console.log("登录失败")
                 }

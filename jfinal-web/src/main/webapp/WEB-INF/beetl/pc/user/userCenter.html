@@ -3,7 +3,11 @@
 
 </style>
 <body>
-user info
+<% include("../layout/navigator.html"){} %>
+<div>
+    ${session.userName}
+</div>
+
 <% include("../layout/footer.html"){} %>
 <script>
 
