@@ -11,12 +11,12 @@ public class User extends Model<User> {
 
     /**
      * 当前用户是否存在
-     * @param userName
+     * @param phoneNumber
      * @param password
      * @return
      */
-    public boolean isExist(String userName, String password) {
-        String sql = "SELECT EXISTS(select * from user where userName='" + userName + "' and password='" + password + "')";
+    public boolean isExist(String phoneNumber, String password) {
+        String sql = "SELECT EXISTS(select * from user where phoneNumber='" + phoneNumber + "' and password='" + password + "')";
         return 1 == (Db.queryLong(sql));
     }
 

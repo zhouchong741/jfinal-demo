@@ -31,11 +31,11 @@ public class UserController extends BaseController {
     // login check
     public void loginCheck() {
         User user = new User();
-        String userName = getPara("userName");
+        String phoneNumber = getPara("phoneNumber");
         String password = getPara("password");
-        setSessionAttr("userName", userName);
+        setSessionAttr("phoneNumber", phoneNumber);
         setSessionAttr("password", password);
-        boolean info = user.isExist(userName, password);
+        boolean info = user.isExist(phoneNumber, password);
         if (info) {
             renderText("1");
         } else {
