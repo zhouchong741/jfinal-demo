@@ -17,6 +17,11 @@ public class BaseController extends Controller {
         return DateUtils.getNow(DateFormatUtils.DEFAULT_YYYY_MM_DD_HH_MIN_SS);
     }
 
+    protected String getNYR(){
+        return DateUtils.getNYR(DateFormatUtils.DEFAULT_YYYY_MM_DD);
+    }
+
+
     public boolean isMobile() {
 
         boolean mobile = false;

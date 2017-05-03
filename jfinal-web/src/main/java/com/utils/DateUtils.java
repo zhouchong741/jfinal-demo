@@ -12,4 +12,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static String getNow(String format) {
         return DateFormatUtils.format(System.currentTimeMillis(), format);
     }
+
+    public static String getNYR(String format) {
+        return DateFormatUtils.format(System.currentTimeMillis(), format);
+    }
 }
