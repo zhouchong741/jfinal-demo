@@ -11,7 +11,6 @@ public class User extends Model<User> {
 
     /**
      * 当前用户是否存在
-     *
      * @param userName
      * @param password
      * @return
@@ -21,8 +20,23 @@ public class User extends Model<User> {
         return 1 == (Db.queryLong(sql));
     }
 
+    /**
+     * 检测当前号码是否已经注册
+     * @param phoneNumber
+     * @return
+     */
     public boolean isExistPhoneNumber(String phoneNumber) {
         String sql = "SELECT EXISTS(select * from user where phoneNumber = " + phoneNumber + ")";
+        return 1 == (Db.queryLong(sql));
+    }
+
+    /**
+     * 检测当前用户名是否已经存在
+     * @param userName
+     * @return
+     */
+    public boolean isExistUserName(String userName){
+        String sql = "SELECT EXISTS(select * from user where phoneNumber = " + userName + ")";
         return 1 == (Db.queryLong(sql));
     }
 }

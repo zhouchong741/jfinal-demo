@@ -8,7 +8,7 @@ import com.model.User;
  * Created by xxx on 2017/4/24.
  */
 public class UserController extends BaseController {
-
+    @Before(LoginInterceptor.class)
     public void index() {
         boolean isMobile = isMobile();
         if (isMobile) {
@@ -16,19 +16,6 @@ public class UserController extends BaseController {
         } else {
             render("/pc/user/userCenter.html");
         }
-    }
-
-    // user center just for login interceptor
-    @Before(LoginInterceptor.class)
-    public void userCenter() {
-        /*boolean isMobile = isMobile();
-        if (isMobile) {
-            render("/mobile/user/userCenter.html");
-        } else {
-            render("/pc/user/userCenter.html");
-        }*/
-
-        // do nothing
     }
 
     // user login
@@ -70,13 +57,15 @@ public class UserController extends BaseController {
     public void registerSave() {
         String phoneNumber = getPara("phoneNumber");
         boolean isExistPhoneNumber = User.dao.isExistPhoneNumber(phoneNumber);
-        if (!isExistPhoneNumber){
+        String userName = getPara("userName");
+        boolean isExistUserName = User.dao.isExistUserName(userName);
+        if (!isExistPhoneNumber) {
             User info = getModel(User.class, "");
             String now = getNow();
             info.set("createTime", now);
             info.save();
             renderText("1");
-        }else {
+        } else {
             renderText("0");
         }
     }

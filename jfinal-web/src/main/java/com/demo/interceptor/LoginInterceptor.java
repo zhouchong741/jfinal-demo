@@ -20,9 +20,8 @@ public class LoginInterceptor extends BaseController implements Interceptor {
                 // 跳转到登录页面
                 inv.getController().redirect("/user/login");
             } else {
-                //inv.getController().redirect("/user");
+                inv.invoke();
                 System.out.println("========OK========");
-
             }
         } else {
             inv.getController().redirect("/user/login");
