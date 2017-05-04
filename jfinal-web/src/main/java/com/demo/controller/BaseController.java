@@ -5,6 +5,7 @@ import com.jfinal.kit.StrKit;
 import com.utils.DateFormatUtils;
 import com.utils.DateUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +18,7 @@ public class BaseController extends Controller {
         return DateUtils.getNow(DateFormatUtils.DEFAULT_YYYY_MM_DD_HH_MIN_SS);
     }
 
-    protected String getNYR(){
+    protected String getNYR() {
         return DateUtils.getNYR(DateFormatUtils.DEFAULT_YYYY_MM_DD);
     }
 
@@ -32,5 +33,19 @@ public class BaseController extends Controller {
             mobile = m.find();
         }
         return mobile;
+    }
+
+    /**
+     * 判断是否登录
+     * @return
+     */
+    public boolean isLogin() {
+        HttpSession session = getSession();
+        if (session != null) {
+            String phoneNumber = (String) session.getAttribute("phoneNumber");
+            return phoneNumber != null;
+        } else {
+            return false;
+        }
     }
 }

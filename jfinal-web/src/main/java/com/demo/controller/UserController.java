@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import com.demo.interceptor.LoginInterceptor;
 import com.jfinal.aop.Before;
+import com.model.Favorite;
 import com.model.User;
 
 import javax.servlet.http.HttpSession;
@@ -86,4 +87,22 @@ public class UserController extends BaseController {
         String excute = User.dao.updateUser(phoneNumber, userName, avatarUrl, address);
         renderText(excute);
     }
+
+    // favorite product
+    public void favorite() {
+        Favorite favorite = getModel(Favorite.class, "");
+        String now = getNow();
+        String phoneNumber = getPara("phoneNumber");
+        String productId = getPara("productId");
+        boolean isExistFavorite = Favorite.dao.isExistFavorite(phoneNumber, productId);
+        if (isExistFavorite){
+            // 如果已经关注
+            renderText("0");
+        }else {
+            favorite.set("createTime", now);
+            favorite.save();
+            renderText("1");
+        }
+    }
+
 }

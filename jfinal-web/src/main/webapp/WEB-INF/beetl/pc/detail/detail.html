@@ -38,7 +38,7 @@
     }
 
     .p-remarks {
-        margin-top: 45px;
+        margin-top: 3.5rem;
         color: #9e9aa2;
         text-align: end;
     }
@@ -80,8 +80,29 @@
         -webkit-line-clamp: 1;
     }
 
-    .social-share{
-        margin-top: 50px;
+    .social-share {
+        margin-top: 2rem;
+    }
+
+    .favorite {
+        margin-top: 1rem;
+    }
+
+    .favorite i {
+        color: red;
+        cursor: pointer;
+    }
+
+    .modal-dialog {
+        margin-top: 25rem;
+    }
+
+    .form-control:focus {
+        border-color: #eea236;
+    }
+
+    .login-body input {
+        margin: 1rem 0;
     }
 </style>
 <body>
@@ -92,6 +113,7 @@
             <img src="${product.headImage}" class="img-thumbnail img-responsive head-img">
         </div>
         <div class="col-md-4 product-intro">
+            <input class="productId" type="hidden" value="${product.productId}">
             <div class="p-name">${product.productName}</div>
             <div class="p-introduce">${product.introduce}</div>
             <div class="p-itemNo">货号：${product.itemNumber}</div>
@@ -102,6 +124,8 @@
                 <span>${product.width} x</span>
                 <span>${product.height} 厘米</span>
             </div>
+            <div class="favorite">点击关注&emsp;<i class="fa fa-heart-o fa-lg"></i></div>
+            <input type="hidden" class="sessionPhoneNumber" value="${session.phoneNumber}">
             <div class="social-share"></div>
             <div class="p-remarks">注：此商品价格以门店销售价格为准</div>
         </div>
@@ -136,6 +160,48 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="loginModalLabel">请登录</h4>
+            </div>
+            <div class="modal-body login-body">
+                <input type="text" class="form-control phoneNumber" id="inputUserName" placeholder="手机号">
+                <input type="password" class="form-control password" id="inputPassword3" placeholder="密码">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning login">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--提示窗-->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">请登录</h4>
+            </div>
+            <div class="my-modal-body login-body">
+                当前产品您已关注
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning alertModal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <% include("../layout/footer.html"){} %>
 <script src="${ctx}/static/js/jquery.share.min.js"></script>
@@ -147,13 +213,64 @@
         title: '${product.productName}',
         description: '${product.introduce}',
         image: '${product.headImage}', // 图片, 默认取网页中第一个img标签
-        sites: ['wechat', 'qq', 'qzone', 'weibo','tencent'],
+        sites: ['wechat', 'qq', 'qzone', 'weibo', 'tencent'],
         disabled: ['google', 'facebook', 'twitter'],
         wechatQrcodeTitle: "微信扫一扫：分享",
         wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
     };
 
     $('.social-share').share($config);
+
+    // 点击关注
+    $(".fa-heart-o").click(function () {
+        if ($(".sessionPhoneNumber").val() == "") {
+            $('#loginModal').modal('show');
+        } else {
+            var data = {};
+            data.createBy = $(".sessionPhoneNumber").val();
+            data.productId = $(".productId").val();
+            $.ajax({
+                url: "${ctx}/user/favorite",
+                type: "post",
+                data: data,
+                dataType: "json",
+                complete: function (result) {
+                    console.log(result);
+                    if (result.responseText == "1") {
+                        $(".fa-heart-o").removeClass().addClass("fa fa-heart fa-lg heart");
+                    } else if (result.responseText == "0"){
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        }
+    });
+
+    $(".login").click(function () {
+        var data = {};
+        data.phoneNumber = $(".phoneNumber").val();
+        data.password = $(".password").val();
+        $.ajax({
+            url: "${ctx}/user/loginCheck",
+            type: "post",
+            cache: false,
+            data: data,
+            dataType: "json",
+            success: function (result) {
+                if (result == "1") {
+                    $('#loginModal').modal('hide');
+                    window.location.reload();
+                } else {
+                    $(".my-modal-body").text("请输入正确手机号和密码");
+                    $('#myModal').modal('show');
+                }
+            }
+        });
+    });
+
+    $(".alertModal").click(function () {
+        $('#myModal').modal('hide');
+    })
 </script>
 </body>
 </html>

@@ -54,6 +54,14 @@ public class User extends Model<User> {
         return dao.findFirst(sql);
     }
 
+    /**
+     * 更新个人信息
+     * @param phoneNumber
+     * @param userName
+     * @param avatarUrl
+     * @param address
+     * @return
+     */
     public String updateUser(String phoneNumber, String userName,String avatarUrl, String address) {
         String sql = "UPDATE user SET userName='" + userName + "',avatarUrl='" + avatarUrl + "',address='" + address + "' WHERE phoneNumber = '" + phoneNumber + "'";
         Db.update(sql);
