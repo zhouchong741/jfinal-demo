@@ -1,6 +1,13 @@
 <% include("../layout/header.html"){} %>
 <style>
 
+    .user-div{
+        width: 1150px;
+        margin: 3rem auto;
+        background: #fff;
+        padding: 3rem;
+        box-shadow: 0 1px 1px rgba(0, 2, 2, 0.1);
+    }
     .avatarUrl-div {
         text-align: center;
     }
@@ -56,7 +63,7 @@
 </style>
 <body>
 <% include("../layout/navigator.html"){} %>
-<div style="width: 1150px;margin: 6rem auto;">
+<div class="user-div">
 
     <div class="row">
         <div class="col-md-4 avatarUrl-div">
@@ -72,7 +79,7 @@
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <input type="text" class="form-control userName" id="inputUserName"
                                value="${userInfo.userName}">
                     </div>
@@ -80,13 +87,13 @@
                 <input class="phoneNumber" type="hidden" value="${userInfo.phoneNumber}">
                 <div class="form-group">
                     <label for="inputAddress" class="col-sm-2 control-label">地址</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <input type="text" class="form-control address" id="inputAddress" placeholder="请填写地址"
                                value="${userInfo.address}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-6">
+                    <div class="col-sm-offset-2 col-sm-8">
                         <button type="button" class="btn btn-warning update-info">更&emsp;新</button>
                     </div>
                 </div>
