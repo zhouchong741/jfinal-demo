@@ -15,8 +15,8 @@ public class LoginInterceptor extends BaseController implements Interceptor {
     public void intercept(Invocation inv) {
         HttpSession session = inv.getController().getSession();
         if (session != null) {
-            String phoneNumber = (String)session.getAttribute("phoneNumber");
-            if (phoneNumber == null) {
+            String phoneNumber = (String) session.getAttribute("phoneNumber");
+            if (phoneNumber == null || phoneNumber.isEmpty()) {
                 // 跳转到登录页面
                 inv.getController().redirect("/user/login");
             } else {
