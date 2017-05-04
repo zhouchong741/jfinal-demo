@@ -67,8 +67,8 @@ public class UserController extends BaseController {
     public void registerSave() {
         String phoneNumber = getPara("phoneNumber");
         boolean isExistPhoneNumber = User.dao.isExistPhoneNumber(phoneNumber);
-        String userName = getPara("userName");
-        boolean isExistUserName = User.dao.isExistUserName(userName);
+        /*String userName = getPara("userName");
+        boolean isExistUserName = User.dao.isExistUserName(userName);*/
         if (!isExistPhoneNumber) {
             User info = getModel(User.class, "");
             String now = getNow();

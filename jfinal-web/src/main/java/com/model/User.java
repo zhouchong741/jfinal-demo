@@ -39,7 +39,7 @@ public class User extends Model<User> {
      * @return
      */
     public boolean isExistUserName(String userName) {
-        String sql = "SELECT EXISTS(select * from user where phoneNumber = " + userName + ")";
+        String sql = "SELECT EXISTS(select * from user where userName = " + userName + ")";
         return 1 == (Db.queryLong(sql));
     }
 
