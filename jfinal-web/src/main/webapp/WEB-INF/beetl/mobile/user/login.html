@@ -1,0 +1,152 @@
+<% include("../layout/header.html"){} %>
+<title>登录</title>
+</head>
+<style>
+    .img-div {
+        text-align: center;
+        margin: 10rem 0 8rem 0;
+    }
+
+    .login-div {
+        padding: 0 5rem;
+    }
+
+    .login-div button {
+        width: 100%;
+        margin-top: 4rem;
+    }
+
+    .phone-div {
+        padding: .4rem 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .fa-mobile-phone {
+        font-size: 2.5rem;
+    }
+
+    .phone-div input {
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+        padding: .5rem;
+    }
+
+    .modal-dialog {
+        margin-top: 20rem;
+    }
+
+    .register-div {
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .register-div a {
+        color: #999;
+        text-decoration: none;
+    }
+
+    input::-webkit-input-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input:-moz-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input::-moz-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input:-ms-input-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    .modal-body{
+        margin: 1.3rem;
+        font-size: 1.5rem;
+    }
+</style>
+<body>
+<div class="img-div">
+    <img src="${ctx}/static/img/logo.jpg">
+</div>
+<div class="login-div">
+    <div class="phone-div">
+        <i class="fa fa-mobile-phone fa-lg"></i>
+        <input type="tel" class="phoneNumber" placeholder="手机号">
+    </div>
+    <div class="phone-div">
+        <i class="fa fa-lock fa-lg"></i>
+        <input type="password" class="password" placeholder="密码">
+    </div>
+
+    <button class="btn btn-warning login">登录</button>
+
+    <div class="register-div">
+        <a href="${ctx}/user/register">注册</a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                登录失败，请检查手机号和密码
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning submit-true">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% include("../layout/footer.html"){} %>
+<script>
+    $(".nav-user").css("color", "#eea236");
+
+    $(".login").click(function () {
+        var data = {};
+        data.phoneNumber = $(".phoneNumber").val();
+        data.password = $(".password").val();
+        $.ajax({
+            url: "${ctx}/user/loginCheck",
+            type: "post",
+            cache: false,
+            data: data,
+            dataType: "json",
+            success: function (result) {
+                if (result == "1") {
+                    console.log("登录成功");
+                    setTimeout(function () {
+                        window.location.href = ("${ctx}/user");
+                    }, 500);
+                } else {
+                    $('#myModal').modal('show');
+                    console.log("登录失败")
+                }
+            }
+        });
+    });
+
+    $(".submit-true").click(function () {
+        $('#myModal').modal('hide');
+    });
+</script>
+</body>
+</html>

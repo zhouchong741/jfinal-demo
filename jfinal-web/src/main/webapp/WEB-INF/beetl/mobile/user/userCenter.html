@@ -1,0 +1,264 @@
+<% include("../layout/header.html"){} %>
+<title>个人中心</title>
+</head>
+<style>
+    body {
+        padding-bottom: 5rem;
+    }
+
+    .user-info {
+        text-align: center;
+        padding: 4rem;
+    }
+
+    .user-avatarUrl img {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 99rem;
+    }
+
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #eea236;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 5px 15px;
+        overflow: hidden;
+        color: #FFF;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file:focus {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .file:hover {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .phone-div {
+        padding: .4rem 0;
+        border-bottom: 1px solid #eeeeee;
+        margin: 1rem 0;
+
+    }
+
+    .phone-div input {
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+        padding: .5rem;
+    }
+
+    .update-info {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    input::-webkit-input-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input:-moz-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input::-moz-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    input:-ms-input-placeholder {
+        color: #999;
+        font-weight: 300;
+        font-size: 1.4rem;
+    }
+
+    .modal-dialog {
+        margin-top: 20rem;
+    }
+
+    .favorite-title {
+        background: #eeeeee;
+        padding: .5rem 0;
+        font-size: 1.5rem;
+        text-align: center;
+        opacity: .6;
+    }
+
+    .headImg {
+        width: 100%;
+        height: 10rem;
+    }
+
+    .favorite-product {
+        margin: 1rem 0;
+    }
+
+    .favorite-product div {
+        padding: 0rem;
+    }
+
+    .col-xs-7 div {
+        margin: .5rem 0;
+        padding-left: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .product-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .product-intro {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .product-price {
+        color: #eea236;
+    }
+
+</style>
+<body>
+<div class="user-info">
+    <div class="user-avatarUrl">
+        <img class="avatarUrl" src="${userInfo.avatarUrl}" alt="头像" onerror="this.src='${ctx}/static/img/error.png'">
+    </div>
+    <form id="uploadForm" enctype="multipart/form-data" method="POST">
+        <a href="javascript:;" class="file">上传头像
+            <input id="uploadInput" type="file" name="uploadFile" multiple>
+        </a>
+    </form>
+    <div class="phone-div">
+        <i class="fa fa-user fa-lg"></i>
+        <input type="text" class="userName" placeholder="用户名" value="${userInfo.userName}">
+    </div>
+    <input class="phoneNumber" type="hidden" value="${userInfo.phoneNumber}">
+    <div class="phone-div">
+        <i class="fa fa-map-marker fa-lg"></i>
+        <input type="text" class="address" placeholder="地址" value="${userInfo.address}">
+    </div>
+    <button type="button" class="btn btn-warning update-info">更&emsp;新</button>
+</div>
+
+<div class="favorite-title">
+    我的关注
+</div>
+<div class="favorite-div">
+    <% for(favorite in favorites){ %>
+    <div class="row favorite-product">
+        <div class="col-xs-5">
+            <a href="${ctx}/detail?productId=${favorite.productId}">
+                <img class="headImg" src="${favorite.headImage}">
+            </a>
+        </div>
+        <div class="col-xs-7">
+            <div class="product-name">${favorite.productName}</div>
+            <div class="product-intro">${favorite.introduce}</div>
+            <div class="product-brand">${favorite.brand}</div>
+            <div class="product-price">￥${favorite.price}</div>
+        </div>
+    </div>
+    <%}%>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                信息更新成功
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning submit-true">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% include("../layout/footer.html"){} %>
+<script src="${ctx}/static/js/jquery.form.js"></script>
+<script>
+    $(".nav-user").css("color", "#eea236");
+
+    var avatarUrl = "";
+    $("#uploadInput").on("change", function () {
+        $(this).parent().submit();
+    });
+
+    $("#uploadForm").on('submit', (function (e) {
+        e.preventDefault();
+        var serializeData = $(this).serialize();
+        $(this).ajaxSubmit({
+            type: 'POST',
+            url: "${ctx}/file/uploadImage",
+            dataType: "json",
+            data: serializeData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            complete: function (result) {
+                avatarUrl = result.responseText;
+                console.log(result.responseText);
+                $(".avatarUrl").attr("src", avatarUrl);
+            }
+        })
+    }));
+
+    $(".update-info").click(function () {
+        var data = {};
+        data.userName = $(".userName").val();
+        data.address = $(".address").val();
+        data.avatarUrl = avatarUrl;
+        data.phoneNumber = $(".phoneNumber").val();
+        $.ajax({
+            url: "${ctx}/user/updateUser",
+            type: "post",
+            data: data,
+            dataType: "json",
+            complete: function (result) {
+                console.log(result);
+                if (result.responseText == "1") {
+                    $('#myModal').modal('show');
+                }
+            }
+        })
+    });
+
+    $(".submit-true").click(function () {
+        $('#myModal').modal('hide');
+    });
+</script>
+</body>
+</html>
