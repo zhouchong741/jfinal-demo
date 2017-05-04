@@ -1,15 +1,178 @@
 <% include("../layout/header.html"){} %>
 <style>
 
+    .avatarUrl-div {
+        text-align: center;
+    }
+
+    .avatarUrl {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 99rem;
+        border: 1px solid #eee;
+    }
+
+    .form-control:focus {
+        border-color: #eea236;
+    }
+
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #eea236;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 5px 15px;
+        overflow: hidden;
+        color: #FFF;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #eea236;
+        border-color: #eea236;
+        color: #eeeeee;
+        text-decoration: none;
+    }
+
+    .modal-dialog {
+        margin-top: 25rem;
+    }
+
+    .update-info {
+        width: 100%;
+        margin-top: 1.7rem;
+    }
 </style>
 <body>
 <% include("../layout/navigator.html"){} %>
-<div>
-    ${session.phoneNumber}
+<div style="width: 1150px;margin: 6rem auto;">
+
+    <div class="row">
+        <div class="col-md-4 avatarUrl-div">
+            <img class="avatarUrl" src="${userInfo.avatarUrl}" alt="头像"
+                 onerror="this.src='${ctx}/static/img/error.png'">
+            <form id="uploadForm" enctype="multipart/form-data" method="POST">
+                <a href="javascript:;" class="file">上传头像
+                    <input id="uploadInput" type="file" name="uploadFile" multiple>
+                </a>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control userName" id="inputUserName"
+                               value="${userInfo.userName}">
+                    </div>
+                </div>
+                <input class="phoneNumber" type="hidden" value="${userInfo.phoneNumber}">
+                <div class="form-group">
+                    <label for="inputAddress" class="col-sm-2 control-label">地址</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control address" id="inputAddress" placeholder="请填写地址"
+                               value="${userInfo.address}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="button" class="btn btn-warning update-info">更&emsp;新</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="my-favorite">
+        我喜欢的产品
+    </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                信息更新成功
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning submit-true">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 <% include("../layout/footer.html"){} %>
+<script src="${ctx}/static/js/jquery.form.js"></script>
 <script>
+    // 设置首页聚焦
+    $(".nav-user").addClass("active");
+
+    var avatarUrl = "";
+    $("#uploadInput").on("change", function () {
+        $(this).parent().submit();
+    });
+
+    $("#uploadForm").on('submit', (function (e) {
+        e.preventDefault();
+        var serializeData = $(this).serialize();
+        $(this).ajaxSubmit({
+            type: 'POST',
+            url: "${ctx}/file/uploadImage",
+            dataType: "json",
+            data: serializeData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            complete: function (result) {
+                avatarUrl = result.responseText;
+                console.log(result.responseText);
+                $(".avatarUrl").attr("src", avatarUrl);
+            }
+        })
+    }));
+
+    $(".update-info").click(function () {
+        var data = {};
+        data.userName = $(".userName").val();
+        data.address = $(".address").val();
+        data.avatarUrl = avatarUrl;
+        data.phoneNumber = $(".phoneNumber").val();
+        $.ajax({
+            url: "${ctx}/user/updateUser",
+            type: "post",
+            data: data,
+            dataType: "json",
+            complete: function (result) {
+                console.log(result);
+                if (result.responseText == "1") {
+                    $('#myModal').modal('show');
+                }
+            }
+        })
+    });
+
+    $(".submit-true").click(function () {
+        $('#myModal').modal('hide');
+    });
 
 </script>
 </body>

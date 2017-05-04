@@ -4,6 +4,8 @@ import com.demo.interceptor.LoginInterceptor;
 import com.jfinal.aop.Before;
 import com.model.User;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by xxx on 2017/4/24.
  */
@@ -11,6 +13,10 @@ public class UserController extends BaseController {
     @Before(LoginInterceptor.class)
     public void index() {
         boolean isMobile = isMobile();
+        HttpSession session = getSession();
+        String phoneNumber = (String) session.getAttribute("phoneNumber");
+        User userInfo = User.dao.getUserInfo(phoneNumber);
+        setAttr("userInfo", userInfo);
         if (isMobile) {
             render("/mobile/user/userCenter.html");
         } else {
@@ -68,5 +74,16 @@ public class UserController extends BaseController {
         } else {
             renderText("0");
         }
+    }
+
+    // ajax update user info
+    public void updateUser() {
+        String userName = getPara("userName");
+        String address = getPara("address");
+        String phoneNumber = getPara("phoneNumber");
+        String now = getNow();
+        String avatarUrl = getPara("avatarUrl");
+        String excute = User.dao.updateUser(phoneNumber, userName, avatarUrl, address);
+        renderText(excute);
     }
 }

@@ -111,11 +111,6 @@
     </div>
 </div>
 
-<form id="uploadForm" enctype="multipart/form-data" method="POST">
-    <input id="uploadInput" type="file" name="uploadFile" multiple>
-    <button type="button" class="upload" >upload</button>
-    <div class="show-img"></div>
-</form>
 
 <!-- Modal -->
 <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
@@ -139,25 +134,8 @@
 </div>
 
 <% include("../layout/footer.html"){} %>
-<script src="${ctx}/static/js/jquery.form.js"></script>
+
 <script>
-    $(".upload").click(function (e) {
-        e.preventDefault();
-        var serializeData = $("#uploadForm").serialize();
-        $("#uploadForm").ajaxSubmit({
-            type:'POST',
-            url: "${ctx}/file/uploadImage",
-            dataType: "json",
-            data: serializeData,
-            contentType: false,
-            cache: false,
-            processData:false,
-            complete: function (result) {
-                console.log(result.responseText);
-                $(".show-img").html("<img src="+result.responseText+">")
-            }
-        })
-    });
 
     // 设置首页聚焦
     $(".nav-message").addClass("active");

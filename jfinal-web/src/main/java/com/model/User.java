@@ -11,6 +11,7 @@ public class User extends Model<User> {
 
     /**
      * 当前用户是否存在
+     *
      * @param phoneNumber
      * @param password
      * @return
@@ -22,6 +23,7 @@ public class User extends Model<User> {
 
     /**
      * 检测当前号码是否已经注册
+     *
      * @param phoneNumber
      * @return
      */
@@ -32,11 +34,29 @@ public class User extends Model<User> {
 
     /**
      * 检测当前用户名是否已经存在
+     *
      * @param userName
      * @return
      */
-    public boolean isExistUserName(String userName){
+    public boolean isExistUserName(String userName) {
         String sql = "SELECT EXISTS(select * from user where phoneNumber = " + userName + ")";
         return 1 == (Db.queryLong(sql));
+    }
+
+    /**
+     * 根据手机号码查找个人信息
+     *
+     * @param phoneNumber
+     * @return
+     */
+    public User getUserInfo(String phoneNumber) {
+        String sql = "SELECT * FROM user where phoneNumber=" + phoneNumber;
+        return dao.findFirst(sql);
+    }
+
+    public String updateUser(String phoneNumber, String userName,String avatarUrl, String address) {
+        String sql = "UPDATE user SET userName='" + userName + "',avatarUrl='" + avatarUrl + "',address='" + address + "' WHERE phoneNumber = '" + phoneNumber + "'";
+        Db.update(sql);
+        return "1";
     }
 }
