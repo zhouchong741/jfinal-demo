@@ -11,12 +11,12 @@ public class Favorite extends Model<Favorite> {
 
     /**
      * 检测当前用户是否已经将此产品关注
-     * @param phoneNumber 当前用户
+     * @param createBy 当前用户
      * @param productId 产品
      * @return
      */
-    public boolean isExistFavorite(String phoneNumber, String productId) {
-        String sql = "SELECT EXISTS(SELECT * FROM favorite where createBy=" + phoneNumber + " and productId=" + phoneNumber+")";
+    public boolean isExistFavorite(String createBy, String productId) {
+        String sql = "SELECT EXISTS(SELECT * FROM favorite where createBy=" + createBy + " and productId=" + productId+")";
         return 1 == (Db.queryLong(sql));
     }
 }

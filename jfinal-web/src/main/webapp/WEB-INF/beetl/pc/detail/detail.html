@@ -104,6 +104,10 @@
     .login-body input {
         margin: 1rem 0;
     }
+    .login-body{
+        margin: 1.3rem;
+        font-size: 1.5rem;
+    }
 </style>
 <body>
 <% include("../layout/navigator.html"){} %>
@@ -240,6 +244,7 @@
                         $(".fa-heart-o").removeClass().addClass("fa fa-heart fa-lg heart");
                     } else if (result.responseText == "0"){
                         $('#myModal').modal('show');
+                        $(".fa-heart-o").removeClass().addClass("fa fa-heart fa-lg heart");
                     }
                 }
             });

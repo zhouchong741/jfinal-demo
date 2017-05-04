@@ -92,9 +92,9 @@ public class UserController extends BaseController {
     public void favorite() {
         Favorite favorite = getModel(Favorite.class, "");
         String now = getNow();
-        String phoneNumber = getPara("phoneNumber");
+        String createBy = getPara("createBy");
         String productId = getPara("productId");
-        boolean isExistFavorite = Favorite.dao.isExistFavorite(phoneNumber, productId);
+        boolean isExistFavorite = Favorite.dao.isExistFavorite(createBy, productId);
         if (isExistFavorite){
             // 如果已经关注
             renderText("0");
