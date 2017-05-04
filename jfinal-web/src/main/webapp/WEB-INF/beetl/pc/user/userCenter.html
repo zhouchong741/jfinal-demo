@@ -1,13 +1,14 @@
 <% include("../layout/header.html"){} %>
 <style>
 
-    .user-div{
+    .user-div {
         width: 1150px;
         margin: 3rem auto;
         background: #fff;
         padding: 3rem;
         box-shadow: 0 1px 1px rgba(0, 2, 2, 0.1);
     }
+
     .avatarUrl-div {
         text-align: center;
     }
@@ -60,11 +61,112 @@
         width: 100%;
         margin-top: 1.7rem;
     }
+
+    .row {
+        margin: 0;
+    }
+
+    .caption-style-4 {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+
+    }
+
+    .caption-style-4 li {
+        float: left;
+        padding: 0px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .caption-style-4 li:hover .caption {
+        opacity: 1;
+    }
+
+    .caption-style-4 li:hover img {
+        opacity: 1;
+        transform: scale(1.15, 1.15);
+        -webkit-transform: scale(1.15, 1.15);
+        -moz-transform: scale(1.15, 1.15);
+        -ms-transform: scale(1.15, 1.15);
+        -o-transform: scale(1.15, 1.15);
+    }
+
+    .caption-style-4 img {
+        margin: 0px;
+        padding: 0px;
+        float: left;
+        z-index: 4;
+    }
+
+    .caption-style-4 .caption {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        -webkit-transition: all 0.45s ease-in-out;
+        -moz-transition: all 0.45s ease-in-out;
+        -o-transition: all 0.45s ease-in-out;
+        -ms-transition: all 0.45s ease-in-out;
+        transition: all 0.45s ease-in-out;
+    }
+
+    .caption-style-4 img {
+        height: 200px;
+        width: 257.5px;
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        -ms-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+    }
+
+    .caption-style-4 .blur {
+        background-color: rgba(0, 0, 0, 0.65);
+        height: 200px;
+        width: 257.5px;
+        z-index: 5;
+        position: absolute;
+    }
+
+    .caption-style-4 .caption-text h1 {
+        text-transform: uppercase;
+        font-size: 24px;
+    }
+
+    .caption-style-4 .caption-text {
+        z-index: 10;
+        color: #fff;
+        position: absolute;
+        height: 200px;
+        width: 257.5px;
+        text-align: center;
+        top: 50px;
+    }
+
+    .favorite-title {
+        margin: 3rem 0;
+        text-align: center;
+        font-size: 2rem;
+    }
+    .favorite-div{
+        margin-bottom: 1rem;
+    }
+    .my-info{
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: 2rem;
+    }
+    .price {
+        color: #eea236;
+    }
 </style>
 <body>
 <% include("../layout/navigator.html"){} %>
 <div class="user-div">
-
+    <div class="my-info">
+        我的信息
+    </div>
     <div class="row">
         <div class="col-md-4 avatarUrl-div">
             <img class="avatarUrl" src="${userInfo.avatarUrl}" alt="头像"
@@ -99,12 +201,35 @@
                 </div>
             </form>
         </div>
-
     </div>
 
-    <div class="my-favorite">
-        我喜欢的产品
+    <div class="favorite-title">
+        我的关注
     </div>
+
+    <div class="row">
+        <% for(favorite in favorites){ %>
+        <div class="col-md-3 favorite-div">
+            <div class="product caption-style-4">
+                <li>
+                    <a href="${ctx}/detail?productId=${favorite.productId}">
+                        <img src="${favorite.headImage}">
+                        <div class="caption">
+                            <div class="blur"></div>
+                            <div class="caption-text">
+                                <h1>查看</h1>
+                                <p>${favorite.productName}</p>
+                                <p class="price">￥${favorite.price}</p>
+                                <p>${favorite.introduce}</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </div>
+        <%}%>
+    </div>
+
 </div>
 
 <!-- Modal -->

@@ -234,7 +234,7 @@
             data.createBy = $(".sessionPhoneNumber").val();
             data.productId = $(".productId").val();
             $.ajax({
-                url: "${ctx}/user/favorite",
+                url: "${ctx}/user/addFavorite",
                 type: "post",
                 data: data,
                 dataType: "json",

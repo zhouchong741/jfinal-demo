@@ -6,6 +6,7 @@ import com.model.Favorite;
 import com.model.User;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by xxx on 2017/4/24.
@@ -18,6 +19,8 @@ public class UserController extends BaseController {
         String phoneNumber = (String) session.getAttribute("phoneNumber");
         User userInfo = User.dao.getUserInfo(phoneNumber);
         setAttr("userInfo", userInfo);
+        List<Favorite> favorites = Favorite.dao.getFavorite(phoneNumber);
+        setAttr("favorites",favorites);
         if (isMobile) {
             render("/mobile/user/userCenter.html");
         } else {
@@ -88,8 +91,8 @@ public class UserController extends BaseController {
         renderText(excute);
     }
 
-    // favorite product
-    public void favorite() {
+    // add favorite product
+    public void addFavorite() {
         Favorite favorite = getModel(Favorite.class, "");
         String now = getNow();
         String createBy = getPara("createBy");
@@ -104,5 +107,4 @@ public class UserController extends BaseController {
             renderText("1");
         }
     }
-
 }
