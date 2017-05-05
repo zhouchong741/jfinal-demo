@@ -81,6 +81,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>jfinal-web</finalName>
+        <finalName>jfinal</finalName>
     </build>
 </project>
