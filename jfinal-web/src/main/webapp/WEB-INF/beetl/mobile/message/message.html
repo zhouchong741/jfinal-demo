@@ -51,6 +51,10 @@
     .modal-dialog {
         margin-top: 20rem;
     }
+
+    .form-control:focus {
+        border-color: #eea236;
+    }
 </style>
 <body>
 <div class="message-div">
@@ -143,7 +147,15 @@
                 }, 1000);
             }
         })
-    })
+    });
+
+    /*// input 获取焦点 隐藏底部导航栏
+    $(".form-group input").focus(function () {
+        setTimeout(function () {
+            $(".footer").toggle();
+        }, 200);
+    });*/
+
 </script>
 </body>
 </html>
