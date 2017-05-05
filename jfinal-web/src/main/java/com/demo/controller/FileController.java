@@ -30,7 +30,7 @@ public class FileController extends BaseController {
         UploadFile file = getFile("uploadFile", path);
         String fileName = file.getFileName();
         // 全路径
-        String filePath = contextPath + "\\upload" + path + "\\" + fileName;
+        String filePath = contextPath + "/upload" + path + "/" + fileName;
         //构造一个带指定Zone对象的配置类 华南
         Configuration cfg = new Configuration(Zone.zone2());
         UploadManager uploadManager = new UploadManager(cfg);
