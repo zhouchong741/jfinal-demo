@@ -50,7 +50,8 @@ public class FileController extends BaseController {
         }
 
         // 删除根目录下文件 + path + "/" + fileName
-        File rootFileDir = new File("/upload");
+        String rootPath = contextPath + "/upload";
+        File rootFileDir = new File(rootPath);
         deleteDir(rootFileDir);
 
         // 返回的图片 url
@@ -60,15 +61,16 @@ public class FileController extends BaseController {
 
     /**
      * 递归删除目录下所有文件及子目录下所有文件
+     *
      * @param dir 文件目录
      * @return
      */
-    private static boolean deleteDir(File dir){
-        if (dir.isDirectory()){
+    private static boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
             String[] children = dir.list();
             for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir,children[i]));
-                if (!success){
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
                     return false;
                 }
             }
