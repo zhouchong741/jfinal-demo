@@ -11,6 +11,8 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 
+import java.io.File;
+
 /**
  * Created by xxx on 2017/5/3.
  */
@@ -47,8 +49,31 @@ public class FileController extends BaseController {
             e.printStackTrace();
         }
 
+        // 删除根目录下文件 + path + "/" + fileName
+        File rootFileDir = new File("/upload");
+        deleteDir(rootFileDir);
+
         // 返回的图片 url
         String fileUrl = qiniuUrl;
         renderText(fileUrl);
+    }
+
+    /**
+     * 递归删除目录下所有文件及子目录下所有文件
+     * @param dir 文件目录
+     * @return
+     */
+    private static boolean deleteDir(File dir){
+        if (dir.isDirectory()){
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir,children[i]));
+                if (!success){
+                    return false;
+                }
+            }
+        }
+        // 此时目录为空
+        return dir.delete();
     }
 }
