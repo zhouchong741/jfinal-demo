@@ -2,6 +2,7 @@ package com.model;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.pojo.UserType;
 
 /**
  * Created by xxx on 2017/4/24.
@@ -10,7 +11,7 @@ public class User extends Model<User> {
     public final static User dao = new User();
 
     /**
-     * 当前用户是否存在
+     * 当前普通用户是否存在
      *
      * @param phoneNumber
      * @param password
@@ -18,6 +19,11 @@ public class User extends Model<User> {
      */
     public boolean isExist(String phoneNumber, String password) {
         String sql = "SELECT EXISTS(select * from user where phoneNumber='" + phoneNumber + "' and password='" + password + "')";
+        return 1 == (Db.queryLong(sql));
+    }
+
+    public boolean isExist(String userName, String password, UserType type) {
+        String sql = "SELECT EXISTS(select * from user where userName='" + userName + "' and password='" + password + "' and type='" + type + "')";
         return 1 == (Db.queryLong(sql));
     }
 
@@ -56,13 +62,14 @@ public class User extends Model<User> {
 
     /**
      * 更新个人信息
+     *
      * @param phoneNumber
      * @param userName
      * @param avatarUrl
      * @param address
      * @return
      */
-    public String updateUser(String phoneNumber, String userName,String avatarUrl, String address) {
+    public String updateUser(String phoneNumber, String userName, String avatarUrl, String address) {
         String sql = "UPDATE user SET userName='" + userName + "',avatarUrl='" + avatarUrl + "',address='" + address + "' WHERE phoneNumber = '" + phoneNumber + "'";
         Db.update(sql);
         return "1";

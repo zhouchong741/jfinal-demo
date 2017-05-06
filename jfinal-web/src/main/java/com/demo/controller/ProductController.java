@@ -15,9 +15,9 @@ public class ProductController extends BaseController {
         setAttr("chairs", chairs);
         List<Product> sofas = Product.dao.getSofas(ProductType.sofa);
         setAttr("sofas", sofas);
-        if (isMobile){
+        if (isMobile) {
             render("/mobile/product/product.html");
-        }else {
+        } else {
             render("/pc/product/product.html");
         }
     }

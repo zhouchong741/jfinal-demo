@@ -16,5 +16,26 @@
 
         var n = Math.floor(Math.random() * color.length);
         $(".sidebar").attr("data-color", color[n]);
+    });
+
+    // 登出
+    $(".logout").click(function () {
+        var data = {};
+        data.userName = "${session.userName}";
+        $.ajax({
+            url:"${ctx}/admin/logout",
+            type: "post",
+            cache: false,
+            data: data,
+            dataType: "json",
+            success:function (result) {
+                if (result == "1"){
+                    console.log("登出");
+                    window.location.href=("${ctx}/admin");
+                }else{
+                    console.log("Error");
+                }
+            }
+        });
     })
 </script>
