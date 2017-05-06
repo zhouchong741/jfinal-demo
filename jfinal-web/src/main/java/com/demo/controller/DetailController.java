@@ -22,7 +22,7 @@ public class DetailController extends BaseController {
         setAttr("recommends", recommends);
 
         HttpServletRequest request = getRequest();
-        String url = ("http://" + request.getServerName() + request.getRequestURI() + "?productId=" + productId).split("#")[0];
+        String url = ("http://" + request.getServerName() + request.getRequestURI() + "?" + request.getQueryString()).split("#")[0];
         Map<String, String> map = WechatUtil.getJsConfig(url);
         setAttr("map", map);
         if (isMobile) {
