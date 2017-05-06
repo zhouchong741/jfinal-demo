@@ -23,6 +23,7 @@ public class DemoConfig extends JFinalConfig {
         GroupTemplate gt = BeetlRenderFactory.groupTemplate;
         //me.setViewType(ViewType.JSP);
         me.setDevMode(true);
+        me.setError404View("/error/404.html");
     }
 
     @Override
