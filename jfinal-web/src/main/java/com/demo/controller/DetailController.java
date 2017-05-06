@@ -3,6 +3,7 @@ package com.demo.controller;
 import com.model.Product;
 import com.utils.WechatUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,10 @@ public class DetailController extends BaseController {
         // 推荐产品不包含当前产品
         List<Product> recommends = Product.dao.getRecommends(productId);
         setAttr("recommends", recommends);
-        Map<String, String> map = WechatUtil.getJsConfig();
+
+        HttpServletRequest request = getRequest();
+        String url = ("http://" + request.getServerName() + request.getRequestURI() + "?productId=" + productId).split("#")[0];
+        Map<String, String> map = WechatUtil.getJsConfig(url);
         setAttr("map", map);
         if (isMobile) {
             render("/mobile/detail/detail.html");
