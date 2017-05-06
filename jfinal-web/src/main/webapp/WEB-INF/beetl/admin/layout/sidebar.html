@@ -1,0 +1,84 @@
+<style>
+    .sidebar .nav > li.active-pro {
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+    }
+
+    .sidebar .nav > li.active-pro a {
+        background: rgba(255, 255, 255, 0.14);
+        opacity: 1;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    .sidebar-background {
+        background: url("${ctx}/static/admin/img/sidebar-5.jpg");
+    }
+</style>
+
+<div class="wrapper">
+    <!--
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="sidebar" data-color="purple" data-image="${ctx}/static/admin/img/sidebar-5.jpg">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    后台管理
+                </a>
+            </div>
+            <ul class="nav">
+                <li class="admin-home">
+                    <a href="${ctx}/admin">
+                        <i class="pe-7s-home"></i>
+                        <p>首页管理</p>
+                    </a>
+                </li>
+                <li class="admin-product">
+                    <a href="${ctx}/admin/productManage">
+                        <i class="pe-7s-menu"></i>
+                        <p>商品管理</p>
+                    </a>
+                </li>
+                <li class="admin-message">
+                    <a href="${ctx}/admin/messageManage">
+                        <i class="pe-7s-bell"></i>
+                        <p>留言管理</p>
+                    </a>
+                </li>
+                <li class="admin-statistics">
+                    <a href="${ctx}/admin/statisticsManage">
+                        <i class="pe-7s-graph3"></i>
+                        <p>统计管理</p>
+                    </a>
+                </li>
+                <li class="active-pro change-color">
+                    <a>
+                        <i class="pe-7s-refresh"></i>
+                        <p>更换背景</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-background"></div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <p>退出</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
