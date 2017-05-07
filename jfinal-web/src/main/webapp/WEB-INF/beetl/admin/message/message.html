@@ -1,23 +1,97 @@
 <% include("../layout/header.html"){} %>
 </head>
-
 <style>
+    nav {
+        text-align: center;
+    }
 
+    .status {
+        cursor: pointer;
+    }
 </style>
 <body>
 <% include("../layout/sidebar.html"){}%>
 <!--内容 start-->
 <div class="content">
-    留言管理
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">用户留言</h4>
+                    <p class="category">请及时处理用户留言</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover">
+                        <thead>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>留言</th>
+                        <th>状态</th>
+                        </thead>
+                        <tbody>
+                        <%
+                        var pageList = page.list;
+                        for(message in pageList){
+                        %>
+                        <tr>
+                            <td>${message.id}</td>
+                            <td>${message.customerName}</td>
+                            <td>${message.customerNumber}</td>
+                            <td>${message.customerMessage}</td>
+                            <% var status=decode(message.status!,"0","未处理","1", "已处理");%>
+                            <td class="status" msgId=${message.id}>${status}</td>
+
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <%
+                            for(var i=1;i<=page.totalPage;i++){
+                            %>
+                            <li class="page-active page_${i}" pageNumber="${page.pageNumber}">
+                                <a href="?pageSize=10&pageNumber=${i}">${i}</a>
+                            </li>
+                            <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--内容 end-->
 <% include("../layout/preview.html"){}%>
-
-
-
 <% include("../layout/footer.html"){}%>
 <script>
     $(".admin-message").addClass("active");
+    var a = $(".page-active").attr("pageNumber");
+    var c = "page_" + a;
+    $("." + c).addClass("active");
+
+    // 修改状态
+    $(".status").click(function () {
+        $(this).addClass("active");
+        $(this).html("已处理");
+        var messageId = $(this).attr("msgId");
+        var data = {};
+        data.id = messageId;
+        $.ajax({
+            url: "${ctx}/admin/changeStatus",
+            type: "post",
+            cache: false,
+            data: data,
+            dataType: "json",
+            success:function (result) {
+                if (result=="1"){
+                    console.log("留言已处理")
+                }
+            }
+        });
+
+    })
 </script>
 </body>
 </html>

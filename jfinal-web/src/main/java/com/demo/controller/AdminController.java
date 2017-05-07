@@ -2,6 +2,8 @@ package com.demo.controller;
 
 import com.demo.interceptor.AdminInterceptor;
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Page;
+import com.model.Message;
 import com.model.User;
 import com.pojo.UserType;
 
@@ -22,6 +24,10 @@ public class AdminController extends BaseController {
 
     @Before(AdminInterceptor.class)
     public void messageManage() {
+        int pageSize = getParaToInt("pageSize", 10);
+        int pageNumber = getParaToInt("pageNumber", 1);
+        Page<Message> page = Message.dao.messagePage(pageNumber, pageSize);
+        setAttr("page", page);
         render("/admin/message/message.html");
     }
 
@@ -57,4 +63,10 @@ public class AdminController extends BaseController {
         renderText("1");
     }
 
+    // change message status
+    public void changeStatus(){
+        String messageId = getPara("id");
+        String excute = Message.dao.changeMessageStatus(messageId);
+        renderText(excute);
+    }
 }
