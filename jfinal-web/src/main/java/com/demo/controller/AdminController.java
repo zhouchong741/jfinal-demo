@@ -4,6 +4,7 @@ import com.demo.interceptor.AdminInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 import com.model.Message;
+import com.model.Product;
 import com.model.User;
 import com.pojo.UserType;
 
@@ -63,8 +64,18 @@ public class AdminController extends BaseController {
         renderText("1");
     }
 
+    // 上传产品
+    public void uploadProduct() {
+        Product info = getModel(Product.class, "");
+        String now = getNow();
+        info.set("createTime", now);
+        info.save();
+        renderText("1");
+    }
+
+
     // change message status
-    public void changeStatus(){
+    public void changeStatus() {
         String messageId = getPara("id");
         String excute = Message.dao.changeMessageStatus(messageId);
         renderText(excute);
