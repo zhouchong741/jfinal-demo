@@ -22,6 +22,13 @@
 3. 微信分享
 4. 后台商品管理系统
 
+## 后台管理
+1. 使用 **Light Bootstrap Dashboard** 模板
+	1. [https://github.com/creativetimofficial/light-bootstrap-dashboard](https://github.com/creativetimofficial/light-bootstrap-dashboard)
+2. 简单效果如下
+3. ![](http://i.imgur.com/diEhb0w.gif)
+
+
 ## 欢迎提问
 1. E-mail:zhouchong741@gmail.com
 
