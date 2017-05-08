@@ -54,26 +54,26 @@
 </style>
 <body>
 <div class="category-title">
-    ∙∙∙∙∙∙ 沙发 ∙∙∙∙∙∙
+    ∙∙∙∙∙∙ 床 ∙∙∙∙∙∙
 </div>
-<% for(chair in chairs){ %>
+<% for(bed in beds){ %>
 <div class="row">
     <div class="col-xs-5">
-        <a href="${ctx}/detail?productId=${chair.productId}">
-            <img class="headImg" src="${chair.headImage}">
+        <a href="${ctx}/detail?productId=${bed.productId}">
+            <img class="headImg" src="${bed.headImage}">
         </a>
     </div>
     <div class="col-xs-7">
-        <div class="product-name">${chair.productName}</div>
-        <div class="product-intro">${chair.introduce}</div>
-        <div class="product-brand">${chair.brand}</div>
-        <div class="product-price">￥${chair.price}</div>
+        <div class="product-name">${bed.productName}</div>
+        <div class="product-intro">${bed.introduce}</div>
+        <div class="product-brand">${bed.brand}</div>
+        <div class="product-price">￥${bed.price}</div>
     </div>
 </div>
 <%}%>
 
 <div class="category-title">
-    ∙∙∙∙∙∙ 床 ∙∙∙∙∙∙
+    ∙∙∙∙∙∙ 沙发 ∙∙∙∙∙∙
 </div>
 <% for(sofa in sofas){ %>
 <div class="row">
@@ -90,6 +90,64 @@
     </div>
 </div>
 <%}%>
+
+<div class="category-title">
+    ∙∙∙∙∙∙ 桌子 ∙∙∙∙∙∙
+</div>
+<% for(desk in desks){ %>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="${ctx}/detail?productId=${desk.productId}">
+            <img class="headImg" src="${desk.headImage}">
+        </a>
+    </div>
+    <div class="col-xs-7">
+        <div class="product-name">${desk.productName}</div>
+        <div class="product-intro">${desk.introduce}</div>
+        <div class="product-brand">${desk.brand}</div>
+        <div class="product-price">￥${desk.price}</div>
+    </div>
+</div>
+<%}%>
+
+<div class="category-title">
+    ∙∙∙∙∙∙ 组合 ∙∙∙∙∙∙
+</div>
+<% for(group in groups){ %>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="${ctx}/detail?productId=${group.productId}">
+            <img class="headImg" src="${group.headImage}">
+        </a>
+    </div>
+    <div class="col-xs-7">
+        <div class="product-name">${group.productName}</div>
+        <div class="product-intro">${group.introduce}</div>
+        <div class="product-brand">${group.brand}</div>
+        <div class="product-price">￥${group.price}</div>
+    </div>
+</div>
+<%}%>
+
+<div class="category-title">
+    ∙∙∙∙∙∙ 其他 ∙∙∙∙∙∙
+</div>
+<% for(other in others){ %>
+<div class="row">
+    <div class="col-xs-5">
+        <a href="${ctx}/detail?productId=${other.productId}">
+            <img class="headImg" src="${other.headImage}">
+        </a>
+    </div>
+    <div class="col-xs-7">
+        <div class="product-name">${other.productName}</div>
+        <div class="product-intro">${other.introduce}</div>
+        <div class="product-brand">${other.brand}</div>
+        <div class="product-price">￥${other.price}</div>
+    </div>
+</div>
+<%}%>
+
 <% include("../layout/footer.html"){} %>
 <script>
     $(".nav-product").css("color", "#eea236");
