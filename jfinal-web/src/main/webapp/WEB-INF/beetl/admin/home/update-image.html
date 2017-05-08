@@ -1,0 +1,257 @@
+<% include("../layout/header.html"){} %>
+</head>
+
+<style>
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #eea236;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 5px 15px;
+        overflow: hidden;
+        color: #FFF;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #eea236;
+        border-color: #eea236;
+        color: #eeeeee;
+        text-decoration: none;
+    }
+
+    .content-img {
+        width: 100%;
+        height: 17vw;
+    }
+
+    .head-img {
+        width: 100%;
+        height: 17vw;
+    }
+
+    .modal-dialog {
+        margin-top: 25rem;
+    }
+
+    .btn {
+        border-width: 1px;
+    }
+</style>
+<body>
+<% include("../layout/sidebar.html"){}%>
+<!--内容 start-->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">更新首页产品</h4>
+                    <p class="category">设置对应的类型</p>
+                </div>
+                <div class="content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control imgName" placeholder="名称"
+                                           value="${image.imgName}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>价格</label>
+                                    <input type="text" class="form-control price" placeholder="价格"
+                                           value="${image.price}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>简介</label>
+                                    <input type="text" class="form-control introduce" placeholder="简介"
+                                           value="${image.introduce}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>关联产品ID</label>
+                                    <input type="text" class="form-control linkUrl" placeholder="关联的产品ID"
+                                           value="${image.linkUrl}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <p>
+                                            首页类型
+                                            <b class="caret"></b>
+                                            <%
+                                            imageType=decode(image.type!,"banner","轮播图","discount","打折","news","新品","hot","热门");
+                                            %>
+                                            <span class="selected">${imageType}</span>
+                                        </p>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="select-type" type="banner" href="#">轮播图</a></li>
+                                        <li><a class="select-type" type="discount" href="#">打折</a></li>
+                                        <li><a class="select-type" type="news" href="#">新品</a></li>
+                                        <li><a class="select-type" type="hot" href="#">热门</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>图片</label>
+                                <form id="uploadHeadForm" enctype="multipart/form-data" method="POST">
+                                    <a href="javascript:;" class="file">上传图片
+                                        <input id="uploadHead" type="file" name="uploadFile" multiple>
+                                    </a>
+                                </form>
+                                <img class="imgUrl img-thumbnail img-responsive" src="${image.imgUrl}" alt="图片"
+                                     onerror="this.src='${ctx}/static/img/upload.png'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <button type="submit" class="btn btn-info btn-fill update-product">更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--内容 end-->
+<% include("../layout/preview.html"){}%>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                更新成功
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning submit-true">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% include("../layout/footer.html"){}%>
+<script src="${ctx}/static/js/jquery.form.js"></script>
+<script>
+    $(".admin-home").addClass("active");
+
+    var imageType = "${image.type}";
+    $(".select-type").click(function () {
+        imageType = $(this).attr("type");
+        $(".selected").text($(this).html());
+    });
+
+    // 头图
+    var imgUrl = "";
+    $("#uploadHead").on("change", function () {
+        $(this).parent().submit();
+    });
+
+    $("#uploadHeadForm").on('submit', (function (e) {
+        e.preventDefault();
+        var serializeData = $(this).serialize();
+        $(this).ajaxSubmit({
+            type: 'POST',
+            url: "${ctx}/file/uploadImage",
+            dataType: "json",
+            data: serializeData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            complete: function (result) {
+                imgUrl = result.responseText;
+                console.log(result.responseText);
+                $(".imgUrl").attr("src", imgUrl);
+            }
+        })
+    }));
+
+
+    $(".update-product").click(function () {
+        var data = {};
+        data.id = "${image.id}";
+        data.imgName = $(".imgName").val();
+        data.price = $(".price").val();
+        data.introduce = $(".introduce").val();
+        data.linkUrl = $(".linkUrl").val();
+        data.type = imageType;
+        data.imgUrl = $(".imgUrl").attr("src");
+        if (data.imgName == "") {
+            $(".modal-body").text("请填写名称");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.price == "") {
+            $(".modal-body").text("请填写价格");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.introduce == "") {
+            $(".modal-body").text("请填写介绍");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.type == "") {
+            $(".modal-body").text("请选择类型");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.imgUrl == "") {
+            $(".modal-body").text("请上传图片");
+            $('#myModal').modal('show');
+            return false;
+        } else {
+            $.ajax({
+                url: "${ctx}/admin/updateHomeItem",
+                type: "post",
+                data: data,
+                dataType: "json",
+                complete: function (result) {
+                    console.log(result);
+                    if (result.responseText == "1") {
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        }
+    });
+    $(".submit-true").click(function () {
+        $('#myModal').modal('hide');
+    });
+
+</script>
+</body>
+</html>

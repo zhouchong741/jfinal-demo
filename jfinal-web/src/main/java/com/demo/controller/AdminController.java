@@ -3,6 +3,7 @@ package com.demo.controller;
 import com.demo.interceptor.AdminInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
+import com.model.Image;
 import com.model.Message;
 import com.model.Product;
 import com.model.User;
@@ -15,6 +16,10 @@ public class AdminController extends BaseController {
 
     @Before(AdminInterceptor.class)
     public void index() {
+        int pageSize = getParaToInt("pageSize", 10);
+        int pageNumber = getParaToInt("pageNumber", 1);
+        Page<Image> page = Image.dao.homePage(pageNumber, pageSize);
+        setAttr("page", page);
         render("/admin/home/dashboard.html");
     }
 
@@ -98,7 +103,7 @@ public class AdminController extends BaseController {
     }
 
     // ajax update product
-    public void updateProductItem(){
+    public void updateProductItem() {
         int productId = getParaToInt("productId");
         String productName = getPara("productName");
         String price = getPara("price");
@@ -111,7 +116,28 @@ public class AdminController extends BaseController {
         String type = getPara("type");
         String headImage = getPara("headImage");
         String content = getPara("content");
-        String excute = Product.dao.updateProductItem(productName,price,brand,itemNumber,introduce,length,width,height,type,headImage,content,productId);
+        String excute = Product.dao.updateProductItem(productName, price, brand, itemNumber, introduce, length, width, height, type, headImage, content, productId);
+        renderText(excute);
+    }
+
+    // update home product
+    public void updateHome() {
+        int id = getParaToInt("id");
+        Image image = Image.dao.getHomeImage(id);
+        setAttr("image", image);
+        render("/admin/home/update-image.html");
+    }
+
+    // ajax update home
+    public void updateHomeItem() {
+        int id = getParaToInt("id");
+        String imgName = getPara("imgName");
+        String price = getPara("price");
+        String introduce = getPara("introduce");
+        String linkUrl = getPara("linkUrl");
+        String type = getPara("type");
+        String imgUrl = getPara("imgUrl");
+        String excute = Image.dao.updateHomeItem(imgName, price, introduce,linkUrl, type, imgUrl, id);
         renderText(excute);
     }
 }

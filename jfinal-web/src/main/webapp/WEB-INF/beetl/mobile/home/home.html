@@ -61,7 +61,7 @@
         <div class="carousel-inner" role="listbox">
             <% for(banner in banners){%>
             <div class="item">
-                <a href="${banner.linkUrl}" style="width: 100%;height: 700px">
+                <a href="${ctx}/detail?productId=${banner.linkUrl}" style="width: 100%;height: 700px">
                     <img class="img-responsive" src="${banner.imgUrl}" alt="...">
                     <div class="carousel-caption">
                         ${banner.introduce}
@@ -76,7 +76,7 @@
 <div class="row">
     <%for(discount in discounts){%>
     <div class="col-xs-6">
-        <a href="${discount.linkUrl}">
+        <a href="${ctx}/detail?productId=${discount.linkUrl}">
             <img src="${discount.imgUrl}" alt="">
         </a>
     </div>
@@ -93,7 +93,7 @@
     <div class="col-xs-6" style="margin-bottom: 10px">
         <div class="product">
             <li>
-                <a href="${new.linkUrl}">
+                <a href="${ctx}/detail?productId=${new.linkUrl}">
                     <img src="${new.imgUrl}">
                 </a>
             </li>
@@ -120,7 +120,7 @@
     <div class="col-xs-6" style="margin-bottom: 20px">
         <div class="product">
             <li>
-                <a href="${hot.linkUrl}">
+                <a href="${ctx}/detail?productId=${hot.linkUrl}">
                     <img src="${hot.imgUrl}">
                 </a>
             </li>

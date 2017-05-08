@@ -1,8 +1,13 @@
 <% include("../layout/header.html"){} %>
 </head>
-
 <style>
+    nav {
+        text-align: center;
+    }
 
+    .go-update i{
+        font-size: 30px;
+    }
 </style>
 <body>
 <% include("../layout/sidebar.html"){}%>
@@ -12,10 +17,56 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">导航栏</h4>
-                    <p class="category">请及时处理用户留言</p>
+                    <h4 class="title">首页管理</h4>
+                    <p class="category">首页内容布局为固定格式，如果需要其他功能，在之后改版再添加</p>
                 </div>
 
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover">
+                        <thead>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>介绍</th>
+                        <th>价格</th>
+                        <th>类型</th>
+                        <th>关联产品ID</th>
+                        <th>修改</th>
+                        </thead>
+                        <tbody>
+
+                        <%
+                        var pageList = page.list;
+                        for(image in pageList){
+                        %>
+
+                        <tr>
+                            <td>${image.id}</td>
+                            <td>${image.imgName}</td>
+                            <td>${image.introduce}</td>
+                            <td>${image.price}</td>
+                            <% var
+                            imageType=decode(image.type!,"banner","轮播图","discount","打折","news","新品","hot","热门");
+                            %>
+                            <td>${imageType}</td>
+                            <td>${image.linkUrl}</td>
+                            <td><a href="${ctx}/admin/updateHome?id=${image.id}" class="go-update"><i class="pe-7s-config"></i></a></td>
+                        </tr>
+
+                        <%}%>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <%
+                            for(var i=1;i<=page.totalPage;i++){
+                            %>
+                            <li class="page-active page_${i}" pageNumber="${page.pageNumber}">
+                                <a href="?pageSize=10&pageNumber=${i}">${i}</a>
+                            </li>
+                            <%}%>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -27,6 +78,9 @@
 <% include("../layout/footer.html"){}%>
 <script>
     $(".admin-home").addClass("active");
+    var a = $(".page-active").attr("pageNumber");
+    var c = "page_" + a;
+    $("." + c).addClass("active");
 </script>
 </body>
 </html>
