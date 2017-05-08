@@ -140,4 +140,11 @@ public class AdminController extends BaseController {
         String excute = Image.dao.updateHomeItem(imgName, price, introduce,linkUrl, type, imgUrl, id);
         renderText(excute);
     }
+
+    // ajax delete product
+    public void deleteProductItem(){
+        int productId = getParaToInt("productId");
+        String excute = Product.dao.deleteProductItem(productId);
+        renderText(excute);
+    }
 }

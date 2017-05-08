@@ -99,4 +99,16 @@ public class Product extends Model<Product> {
         Db.update(sql);
         return "1";
     }
+
+    /**
+     * 删除产品
+     *
+     * @param productId
+     * @return
+     */
+    public String deleteProductItem(int productId) {
+        String sql = "delete from product where productId = " + productId;
+        Db.update(sql);
+        return "1";
+    }
 }
