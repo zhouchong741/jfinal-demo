@@ -1,0 +1,342 @@
+<% include("../layout/header.html"){} %>
+</head>
+
+<style>
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #eea236;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 5px 15px;
+        overflow: hidden;
+        color: #FFF;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #eea236;
+        border-color: #eea236;
+        color: #eeeeee;
+        text-decoration: none;
+    }
+
+    .content-img {
+        width: 100%;
+        height: 17vw;
+    }
+
+    .head-img {
+        width: 100%;
+        height: 17vw;
+    }
+
+    .modal-dialog {
+        margin-top: 25rem;
+    }
+
+    .btn {
+        border-width: 1px;
+    }
+</style>
+<body>
+<% include("../layout/sidebar.html"){}%>
+<!--内容 start-->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">添加产品</h4>
+                    <p class="category">设置对应的类型</p>
+                </div>
+                <div class="content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>名称</label>
+                                    <input type="text" class="form-control productName" placeholder="产品名称" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>价格</label>
+                                    <input type="text" class="form-control price" placeholder="产品价格" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>品牌</label>
+                                    <input type="text" class="form-control brand" placeholder="产品品牌" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>编号</label>
+                                    <input type="text" class="form-control itemNumber" placeholder="产品编号" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>简介</label>
+                                    <input type="text" class="form-control introduce" placeholder="产品简介" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>长</label>
+                                    <input type="text" class="form-control length" placeholder="长度" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>宽</label>
+                                    <input type="text" class="form-control width" placeholder="宽度" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>高</label>
+                                    <input type="text" class="form-control height" placeholder="高度" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <p>
+                                            产品类型
+                                            <b class="caret"></b>
+                                            <span class="selected"></span>
+                                        </p>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="select-type" type="sofa" href="#">沙发</a></li>
+                                        <li><a class="select-type" type="bed" href="#">床</a></li>
+                                        <li><a class="select-type" type="desk" href="#">桌</a></li>
+                                        <li><a class="select-type" type="group" href="#">组合</a></li>
+                                        <li><a class="select-type" type="other" href="#">其他</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>头图</label>
+                                <form id="uploadHeadForm" enctype="multipart/form-data" method="POST">
+                                    <a href="javascript:;" class="file">上传产品头图
+                                        <input id="uploadHead" type="file" name="uploadFile" multiple>
+                                    </a>
+                                </form>
+                                <img class="head-img img-thumbnail img-responsive" src="" alt="头像"
+                                     onerror="this.src='${ctx}/static/img/upload.png'">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>内容</label>
+                                <form id="uploadContentForm" enctype="multipart/form-data" method="POST">
+                                    <a href="javascript:;" class="file">上传产品内容
+                                        <input id="uploadContent" type="file" name="uploadFile" multiple>
+                                    </a>
+                                </form>
+                                <img class="content-img img-thumbnail img-responsive" src="" alt="头像"
+                                     onerror="this.src='${ctx}/static/img/upload.png'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <button type="submit" class="btn btn-info btn-fill upload-product">上传产品</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--内容 end-->
+<% include("../layout/preview.html"){}%>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                产品上传成功
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning submit-true">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% include("../layout/footer.html"){}%>
+<script src="${ctx}/static/js/jquery.form.js"></script>
+<script>
+    $(".admin-add-product").addClass("active");
+
+    var productType = "";
+    $(".select-type").click(function () {
+        productType = $(this).attr("type");
+        $(".selected").text($(this).html());
+    });
+
+    // 头图
+    var headImg = "";
+    $("#uploadHead").on("change", function () {
+        $(this).parent().submit();
+    });
+
+    $("#uploadHeadForm").on('submit', (function (e) {
+        e.preventDefault();
+        var serializeData = $(this).serialize();
+        $(this).ajaxSubmit({
+            type: 'POST',
+            url: "${ctx}/file/uploadImage",
+            dataType: "json",
+            data: serializeData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            complete: function (result) {
+                headImg = result.responseText;
+                console.log(result.responseText);
+                $(".head-img").attr("src", headImg);
+            }
+        })
+    }));
+
+    // 内容图
+    // 头图
+    var contentImg = "";
+    $("#uploadContent").on("change", function () {
+        $(this).parent().submit();
+    });
+
+    $("#uploadContentForm").on('submit', (function (e) {
+        e.preventDefault();
+        var serializeData = $(this).serialize();
+        $(this).ajaxSubmit({
+            type: 'POST',
+            url: "${ctx}/file/uploadImage",
+            dataType: "json",
+            data: serializeData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            complete: function (result) {
+                contentImg = result.responseText;
+                console.log(result.responseText);
+                $(".content-img").attr("src", contentImg);
+            }
+        })
+    }));
+
+    $(".upload-product").click(function () {
+        var data = {};
+        data.productName = $(".productName").val();
+        data.price = $(".price").val();
+        data.brand = $(".brand").val();
+        data.itemNumber = $(".itemNumber").val();
+        data.introduce = $(".introduce").val();
+        data.length = $(".length").val();
+        data.width = $(".width").val();
+        data.height = $(".height").val();
+        data.type = productType;
+        data.headImage = headImg;
+        data.content = contentImg;
+        if (data.productName == "") {
+            $(".modal-body").text("请填写产品名称");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.price == "") {
+            $(".modal-body").text("请填写产品价格");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.brand == "") {
+            $(".modal-body").text("请填写产品品牌");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.itemNumber == "") {
+            $(".modal-body").text("请填写产品编号");
+            $('#myModal').modal('show');
+            return false;
+        }else if (data.introduce == "") {
+            $(".modal-body").text("请填写产品介绍");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.length == "") {
+            $(".modal-body").text("请填写产品长度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.width == "") {
+            $(".modal-body").text("请填写产品宽度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.height == "") {
+            $(".modal-body").text("请填写产品高度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (productType == "") {
+            $(".modal-body").text("请选择产品类型");
+            $('#myModal').modal('show');
+            return false;
+        } else if (headImg == "") {
+            $(".modal-body").text("请上传头图");
+            $('#myModal').modal('show');
+            return false;
+        } else if (contentImg == "") {
+            $(".modal-body").text("请上传产品内容图");
+            $('#myModal').modal('show');
+            return false;
+        } else {
+            $.ajax({
+                url: "${ctx}/admin/uploadProduct",
+                type: "post",
+                data: data,
+                dataType: "json",
+                complete: function (result) {
+                    console.log(result);
+                    if (result.responseText == "1") {
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        }
+    });
+    $(".submit-true").click(function () {
+        $('#myModal').modal('hide');
+    });
+
+</script>
+</body>
+</html>

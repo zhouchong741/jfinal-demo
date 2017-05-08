@@ -4,8 +4,11 @@ package com.pojo;
  * Created by xxx on 2017/4/26.
  */
 public enum  ProductType {
-    chair(1,"chair"),
-    sofa(2,"sofa");
+    bed(1,"bed"),
+    sofa(2,"sofa"),
+    desk(2,"desk"),
+    group(2,"group"),
+    other(2,"other");
 
     private int type;
     private String text;

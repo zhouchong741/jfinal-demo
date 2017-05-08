@@ -24,6 +24,11 @@ public class Message extends Model<Message> {
         return page;
     }
 
+    /**
+     * 修改留言状态
+     * @param messageId
+     * @return
+     */
     public String changeMessageStatus(String messageId) {
         String sql = "UPDATE message SET status=1 WHERE id=" + messageId;
         Db.update(sql);

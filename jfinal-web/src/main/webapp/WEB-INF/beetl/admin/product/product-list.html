@@ -1,0 +1,90 @@
+<% include("../layout/header.html"){} %>
+</head>
+<style>
+    nav {
+        text-align: center;
+    }
+
+    .go-update i{
+        font-size: 30px;
+    }
+</style>
+<body>
+<% include("../layout/sidebar.html"){}%>
+<!--内容 start-->
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">产品管理</h4>
+                    <p class="category"></p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover">
+                        <thead>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>价格</th>
+                        <th>品牌</th>
+                        <th>编号</th>
+                        <th>简介</th>
+                        <th>长度</th>
+                        <th>宽度</th>
+                        <th>高度</th>
+                        <th>类型</th>
+                        <th>修改</th>
+                        </thead>
+                        <tbody>
+
+                        <%
+                        var pageList = page.list;
+                        for(product in pageList){
+                        %>
+
+                        <tr>
+                            <td>${product.productId}</td>
+                            <td>${product.productName}</td>
+                            <td>${product.price}</td>
+                            <td>${product.brand}</td>
+                            <td>${product.itemNumber}</td>
+                            <td>${product.introduce}</td>
+                            <td>${product.length}</td>
+                            <td>${product.width}</td>
+                            <td>${product.height}</td>
+                            <% var productType=decode(product.type!,"sofa","沙发","bed",
+                            "床","desk","桌子","group","组合","other","其他");%>
+                            <td>${productType}</td>
+                            <td><a href="${ctx}/admin/updateProduct?productId=${product.productId}" class="go-update"><i class="pe-7s-config"></i></a></td>
+                        </tr>
+
+                        <%}%>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <%
+                            for(var i=1;i<=page.totalPage;i++){
+                            %>
+                            <li class="page-active page_${i}" pageNumber="${page.pageNumber}">
+                                <a href="?pageSize=10&pageNumber=${i}">${i}</a>
+                            </li>
+                            <%}%>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--内容 end-->
+<% include("../layout/preview.html"){}%>
+<% include("../layout/footer.html"){}%>
+<script>
+    $(".admin-product").addClass("active");
+    var a = $(".page-active").attr("pageNumber");
+    var c = "page_" + a;
+    $("." + c).addClass("active");
+</script>
+</body>
+</html>

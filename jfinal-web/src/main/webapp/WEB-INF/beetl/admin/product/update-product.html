@@ -33,12 +33,12 @@
 
     .content-img {
         width: 100%;
-        height: 500px;
+        height: 17vw;
     }
 
     .head-img {
         width: 100%;
-        height: 500px;
+        height: 17vw;
     }
 
     .modal-dialog {
@@ -57,7 +57,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">商品管理</h4>
+                    <h4 class="title">更新产品</h4>
                     <p class="category">设置对应的类型</p>
                 </div>
                 <div class="content">
@@ -66,25 +66,29 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>名称</label>
-                                    <input type="text" class="form-control productName" placeholder="产品名称" value="">
+                                    <input type="text" class="form-control productName" placeholder="产品名称"
+                                           value="${product.productName}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>价格</label>
-                                    <input type="text" class="form-control price" placeholder="产品价格" value="">
+                                    <input type="text" class="form-control price" placeholder="产品价格"
+                                           value="${product.price}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>品牌</label>
-                                    <input type="text" class="form-control brand" placeholder="产品品牌" value="">
+                                    <input type="text" class="form-control brand" placeholder="产品品牌"
+                                           value="${product.brand}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>编号</label>
-                                    <input type="text" class="form-control itemNumber" placeholder="产品编号" value="">
+                                    <input type="text" class="form-control itemNumber" placeholder="产品编号"
+                                           value="${product.itemNumber}">
                                 </div>
                             </div>
                         </div>
@@ -93,25 +97,29 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>简介</label>
-                                    <input type="text" class="form-control introduce" placeholder="产品简介" value="">
+                                    <input type="text" class="form-control introduce" placeholder="产品简介"
+                                           value="${product.introduce}">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>长</label>
-                                    <input type="text" class="form-control length" placeholder="长度" value="">
+                                    <input type="text" class="form-control length" placeholder="长度"
+                                           value="${product.length}">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>宽</label>
-                                    <input type="text" class="form-control width" placeholder="宽度" value="">
+                                    <input type="text" class="form-control width" placeholder="宽度"
+                                           value="${product.width}">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>高</label>
-                                    <input type="text" class="form-control height" placeholder="高度" value="">
+                                    <input type="text" class="form-control height" placeholder="高度"
+                                           value="${product.height}">
                                 </div>
                             </div>
                         </div>
@@ -121,9 +129,11 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <p>
-                                            类型
+                                            产品类型
                                             <b class="caret"></b>
-                                            <span class="selected"></span>
+                                            <% var productType=decode(product.type!,"sofa","沙发","bed",
+                                            "床","desk","桌子","group","组合","other","其他");%>
+                                            <span class="selected disable">${productType}</span>
                                         </p>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -141,7 +151,7 @@
 
                 <div class="content">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>头图</label>
                                 <form id="uploadHeadForm" enctype="multipart/form-data" method="POST">
@@ -149,11 +159,11 @@
                                         <input id="uploadHead" type="file" name="uploadFile" multiple>
                                     </a>
                                 </form>
-                                <img class="head-img" src="" alt="头像"
-                                     onerror="this.src='${ctx}/static/img/default.png'">
+                                <img class="head-img img-thumbnail img-responsive" src="${product.headImage}" alt="头像"
+                                     onerror="this.src='${ctx}/static/img/upload.png'">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>内容</label>
                                 <form id="uploadContentForm" enctype="multipart/form-data" method="POST">
@@ -161,15 +171,15 @@
                                         <input id="uploadContent" type="file" name="uploadFile" multiple>
                                     </a>
                                 </form>
-                                <img class="content-img" src="" alt="头像"
-                                     onerror="this.src='${ctx}/static/img/default.png'">
+                                <img class="content-img img-thumbnail img-responsive" src="${product.content}" alt="头像"
+                                     onerror="this.src='${ctx}/static/img/upload.png'">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="content">
-                    <button type="submit" class="btn btn-info btn-fill upload-product">上传产品</button>
+                    <button type="submit" class="btn btn-info btn-fill update-product">更新产品</button>
                 </div>
             </div>
         </div>
@@ -190,7 +200,7 @@
                 <h4 class="modal-title" id="myModalLabel">提示</h4>
             </div>
             <div class="modal-body">
-                产品上传成功
+                产品更新成功
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -204,7 +214,7 @@
 <script>
     $(".admin-product").addClass("active");
 
-    var productType = "";
+    var productType = "${product.type}";
     $(".select-type").click(function () {
         productType = $(this).attr("type");
         $(".selected").text($(this).html());
@@ -261,8 +271,9 @@
         })
     }));
 
-    $(".upload-product").click(function () {
+    $(".update-product").click(function () {
         var data = {};
+        data.productId = "${product.productId}";
         data.productName = $(".productName").val();
         data.price = $(".price").val();
         data.brand = $(".brand").val();
@@ -272,20 +283,66 @@
         data.width = $(".width").val();
         data.height = $(".height").val();
         data.type = productType;
-        data.headImage = headImg;
-        data.content = contentImg;
-        $.ajax({
-            url: "${ctx}/admin/uploadProduct",
-            type: "post",
-            data: data,
-            dataType: "json",
-            complete: function (result) {
-                console.log(result);
-                if (result.responseText == "1") {
-                    $('#myModal').modal('show');
+        data.headImage = $(".head-img").attr("src");
+        data.content = $(".content-img").attr("src");
+        if (data.productName == "") {
+            $(".modal-body").text("请填写产品名称");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.price == "") {
+            $(".modal-body").text("请填写产品价格");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.brand == "") {
+            $(".modal-body").text("请填写产品品牌");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.itemNumber == "") {
+            $(".modal-body").text("请填写产品编号");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.introduce == "") {
+            $(".modal-body").text("请填写产品介绍");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.length == "") {
+            $(".modal-body").text("请填写产品长度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.width == "") {
+            $(".modal-body").text("请填写产品宽度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.height == "") {
+            $(".modal-body").text("请填写产品高度");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.type == "") {
+            $(".modal-body").text("请选择产品类型");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.headImage == "") {
+            $(".modal-body").text("请上传头图");
+            $('#myModal').modal('show');
+            return false;
+        } else if (data.content == "") {
+            $(".modal-body").text("请上传产品内容图");
+            $('#myModal').modal('show');
+            return false;
+        } else {
+            $.ajax({
+                url: "${ctx}/admin/updateProductItem",
+                type: "post",
+                data: data,
+                dataType: "json",
+                complete: function (result) {
+                    console.log(result);
+                    if (result.responseText == "1") {
+                        $('#myModal').modal('show');
+                    }
                 }
-            }
-        });
+            });
+        }
     });
     $(".submit-true").click(function () {
         $('#myModal').modal('hide');

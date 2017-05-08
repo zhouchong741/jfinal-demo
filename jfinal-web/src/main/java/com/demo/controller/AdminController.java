@@ -20,7 +20,16 @@ public class AdminController extends BaseController {
 
     @Before(AdminInterceptor.class)
     public void productManage() {
-        render("/admin/product/product.html");
+        int pageSize = getParaToInt("pageSize", 10);
+        int pageNumber = getParaToInt("pageNumber", 1);
+        Page<Product> page = Product.dao.productPage(pageNumber, pageSize);
+        setAttr("page", page);
+        render("/admin/product/product-list.html");
+    }
+
+    @Before(AdminInterceptor.class)
+    public void addProduct() {
+        render("/admin/product/add-product.html");
     }
 
     @Before(AdminInterceptor.class)
@@ -73,11 +82,36 @@ public class AdminController extends BaseController {
         renderText("1");
     }
 
-
     // change message status
     public void changeStatus() {
         String messageId = getPara("id");
         String excute = Message.dao.changeMessageStatus(messageId);
+        renderText(excute);
+    }
+
+    // update product
+    public void updateProduct() {
+        int productId = getParaToInt("productId");
+        Product product = Product.dao.getProduct(productId);
+        setAttr("product", product);
+        render("/admin/product/update-product.html");
+    }
+
+    // ajax update product
+    public void updateProductItem(){
+        int productId = getParaToInt("productId");
+        String productName = getPara("productName");
+        String price = getPara("price");
+        String brand = getPara("brand");
+        String itemNumber = getPara("itemNumber");
+        String introduce = getPara("introduce");
+        String length = getPara("length");
+        String width = getPara("width");
+        String height = getPara("height");
+        String type = getPara("type");
+        String headImage = getPara("headImage");
+        String content = getPara("content");
+        String excute = Product.dao.updateProductItem(productName,price,brand,itemNumber,introduce,length,width,height,type,headImage,content,productId);
         renderText(excute);
     }
 }
