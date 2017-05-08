@@ -91,7 +91,9 @@ public class Product extends Model<Product> {
      * @param productId
      * @return
      */
-    public String updateProductItem(String productName, String price, String brand, String itemNumber, String introduce, String length, String width, String height, String type, String headImage, String content, int productId) {
+    public String updateProductItem(String productName, String price, String brand, String itemNumber,
+                                    String introduce, String length, String width, String height,
+                                    String type, String headImage, String content, int productId) {
         String sql = "UPDATE product SET productName = '" + productName + "', price = " + price + ", " +
                 "brand = '" + brand + "', itemNumber = " + itemNumber + ", introduce = '" + introduce + "', " +
                 "length = " + length + ", width = " + width + ", height = " + height + ", type = '" + type + "', " +
