@@ -5,7 +5,8 @@
         text-align: center;
     }
 
-    .status {
+    .pe-7s-close{
+        font-size: 30px;
         cursor: pointer;
     }
 </style>
@@ -28,8 +29,14 @@
                         <th>电话</th>
                         <th>留言</th>
                         <th>状态</th>
+                        <th>处理</th>
                         </thead>
                         <tbody>
+                        <% if(isEmpty(page.list)){ %>
+                        <tr>
+                            <td style="text-align: center" colspan="6">当前暂无留言</td>
+                        </tr>
+                        <%}%>
                         <%
                         var pageList = page.list;
                         for(message in pageList){
@@ -41,7 +48,7 @@
                             <td>${message.customerMessage}</td>
                             <% var status=decode(message.status!,"0","未处理","1", "已处理");%>
                             <td class="status" msgId=${message.id}>${status}</td>
-
+                            <td><i class="pe-7s-close"></i></td>
                         </tr>
                         <%}%>
                         </tbody>
@@ -72,10 +79,10 @@
     $("." + c).addClass("active");
 
     // 修改状态
-    $(".status").click(function () {
-        $(this).addClass("active");
-        $(this).html("已处理");
-        var messageId = $(this).attr("msgId");
+    $(".pe-7s-close").click(function () {
+        $(".status").addClass("active");
+        $(".status").html("已处理");
+        var messageId = $(".status").attr("msgId");
         var data = {};
         data.id = messageId;
         $.ajax({
