@@ -25,7 +25,7 @@
                         title: {
                             text: '2017 年月销售额',
                             subtext: '单位：万元',
-                            x:'center'
+                            x: 'center'
                         },
                         tooltip: {},
                         legend: {
@@ -64,32 +64,38 @@
                     var myChart = echarts.init(document.getElementById('employee-echarts'));
 
                     var option = {
-                        title : {
+                        title: {
                             text: '个人月销售额',
                             subtext: '单位：万元',
-                            x:'center'
+                            x: 'center'
                         },
-                        tooltip : {
+                        tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
                             orient: 'vertical',
                             left: 'left',
-                            data: ['${sales[0].saller}','${sales[1].saller}','${sales[2].saller}','${sales[3].saller}','${sales[4].saller}']
+                            data: [
+                                '${sales[0].saller}',
+                                '${sales[1].saller}',
+                                '${sales[2].saller}',
+                                '${sales[3].saller}',
+                                '${sales[4].saller}'
+                            ]
                         },
-                        series : [
+                        series: [
                             {
                                 name: '销售额',
                                 type: 'pie',
-                                radius : '55%',
+                                radius: '55%',
                                 center: ['50%', '60%'],
-                                data:[
-                                    {value:'${sales[0].amount}', name:'${sales[0].saller}'},
-                                    {value:'${sales[1].amount}', name:'${sales[1].saller}'},
-                                    {value:'${sales[2].amount}', name:'${sales[2].saller}'},
-                                    {value:'${sales[3].amount}', name:'${sales[3].saller}'},
-                                    {value:'${sales[4].amount}', name:'${sales[4].saller}'}
+                                data: [
+                                    {value: '${sales[0].amount}', name: '${sales[0].saller}'},
+                                    {value: '${sales[1].amount}', name: '${sales[1].saller}'},
+                                    {value: '${sales[2].amount}', name: '${sales[2].saller}'},
+                                    {value: '${sales[3].amount}', name: '${sales[3].saller}'},
+                                    {value: '${sales[4].amount}', name: '${sales[4].saller}'}
                                 ],
                                 itemStyle: {
                                     emphasis: {
