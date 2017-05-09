@@ -3,11 +3,10 @@ package com.demo.controller;
 import com.demo.interceptor.AdminInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
-import com.model.Image;
-import com.model.Message;
-import com.model.Product;
-import com.model.User;
+import com.model.*;
 import com.pojo.UserType;
+
+import java.util.List;
 
 /**
  * Created by zc741 on 2017/5/6.
@@ -48,6 +47,9 @@ public class AdminController extends BaseController {
 
     @Before(AdminInterceptor.class)
     public void statisticsManage() {
+        int month = getParaToInt("month", 1);
+        List<Sales> sales = Sales.dao.getSales(1);
+        setAttr("sales", sales);
         render("/admin/statistics/statistics.html");
     }
 
@@ -137,12 +139,12 @@ public class AdminController extends BaseController {
         String linkUrl = getPara("linkUrl");
         String type = getPara("type");
         String imgUrl = getPara("imgUrl");
-        String excute = Image.dao.updateHomeItem(imgName, price, introduce,linkUrl, type, imgUrl, id);
+        String excute = Image.dao.updateHomeItem(imgName, price, introduce, linkUrl, type, imgUrl, id);
         renderText(excute);
     }
 
     // ajax delete product
-    public void deleteProductItem(){
+    public void deleteProductItem() {
         int productId = getParaToInt("productId");
         String excute = Product.dao.deleteProductItem(productId);
         renderText(excute);

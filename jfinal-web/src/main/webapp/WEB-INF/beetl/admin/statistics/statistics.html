@@ -58,6 +58,7 @@
                     <p class="category"></p>
                 </div>
                 <div id="employee-echarts" style="width: 100%;height:400px;"></div>
+                ${sales[0].saller}
                 <script type="text/javascript">
                     // 基于准备好的dom，初始化echarts实例
                     var myChart = echarts.init(document.getElementById('employee-echarts'));
@@ -75,7 +76,7 @@
                         legend: {
                             orient: 'vertical',
                             left: 'left',
-                            data: ['张三','李四','王五','赵六','韩七']
+                            data: ['${sales[0].saller}','${sales[1].saller}','${sales[2].saller}','${sales[3].saller}','${sales[4].saller}']
                         },
                         series : [
                             {
@@ -84,11 +85,11 @@
                                 radius : '55%',
                                 center: ['50%', '60%'],
                                 data:[
-                                    {value:335, name:'张三'},
-                                    {value:310, name:'李四'},
-                                    {value:234, name:'王五'},
-                                    {value:135, name:'赵六'},
-                                    {value:1548, name:'韩七'}
+                                    {value:'${sales[0].amount}', name:'${sales[0].saller}'},
+                                    {value:'${sales[1].amount}', name:'${sales[1].saller}'},
+                                    {value:'${sales[2].amount}', name:'${sales[2].saller}'},
+                                    {value:'${sales[3].amount}', name:'${sales[3].saller}'},
+                                    {value:'${sales[4].amount}', name:'${sales[4].saller}'}
                                 ],
                                 itemStyle: {
                                     emphasis: {

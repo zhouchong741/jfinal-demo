@@ -12,5 +12,6 @@ public class _MappingKit {
         arp.addMapping("message", "id", Message.class);
         arp.addMapping("user", "id", User.class);
         arp.addMapping("favorite", "id", Favorite.class);
+        arp.addMapping("sales", "id", Sales.class);
     }
 }
