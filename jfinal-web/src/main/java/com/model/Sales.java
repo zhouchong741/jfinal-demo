@@ -10,7 +10,6 @@ import java.util.List;
 public class Sales extends Model<Sales> {
     public final static Sales dao = new Sales();
 
-
     public List<Sales> getSales(int month) {
         String sql = "SELECT * FROM sales where month=" + month;
         return dao.find(sql);
