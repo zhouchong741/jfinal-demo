@@ -20,7 +20,7 @@ public class UserController extends BaseController {
         User userInfo = User.dao.getUserInfo(phoneNumber);
         setAttr("userInfo", userInfo);
         List<Favorite> favorites = Favorite.dao.getFavorite(phoneNumber);
-        setAttr("favorites",favorites);
+        setAttr("favorites", favorites);
         if (isMobile) {
             render("/mobile/user/userCenter.html");
         } else {
@@ -98,10 +98,10 @@ public class UserController extends BaseController {
         String createBy = getPara("createBy");
         String productId = getPara("productId");
         boolean isExistFavorite = Favorite.dao.isExistFavorite(createBy, productId);
-        if (isExistFavorite){
+        if (isExistFavorite) {
             // 如果已经关注
             renderText("0");
-        }else {
+        } else {
             favorite.set("createTime", now);
             favorite.save();
             renderText("1");
