@@ -5,7 +5,7 @@
         text-align: center;
     }
 
-    .go-update i{
+    .go-update i {
         font-size: 30px;
     }
 </style>
@@ -49,7 +49,8 @@
                             %>
                             <td>${imageType}</td>
                             <td>${image.linkUrl}</td>
-                            <td><a href="${ctx}/admin/updateHome?id=${image.id}" class="go-update"><i class="pe-7s-config"></i></a></td>
+                            <td><a href="${ctx}/admin/updateHome?id=${image.id}" class="go-update"><i
+                                    class="pe-7s-config"></i></a></td>
                         </tr>
 
                         <%}%>
@@ -73,7 +74,6 @@
 </div>
 <!--内容 end-->
 <% include("../layout/preview.html"){}%>
-
 
 <% include("../layout/footer.html"){}%>
 <script>

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
+ * 格式化
  * Created by xxx on 2017/4/27.
  */
 public class FormatUtil {

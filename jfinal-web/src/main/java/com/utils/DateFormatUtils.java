@@ -6,6 +6,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 /**
+ * 时间格式化工具类
  * Created by xxx on 2017/4/25.
  */
 public class DateFormatUtils  extends org.apache.commons.lang3.time.DateFormatUtils {

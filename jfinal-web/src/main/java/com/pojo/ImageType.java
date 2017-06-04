@@ -1,6 +1,7 @@
 package com.pojo;
 
 /**
+ * 图片类型
  * Created by zc741 on 2017/4/23.
  */
 public enum  ImageType {

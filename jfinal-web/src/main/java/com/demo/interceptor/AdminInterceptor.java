@@ -7,6 +7,7 @@ import com.jfinal.aop.Invocation;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 后台管理登录拦截器
  * Created by zc741 on 2017/5/6.
  */
 public class AdminInterceptor extends BaseController implements Interceptor {

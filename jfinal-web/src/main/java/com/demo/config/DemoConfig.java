@@ -12,6 +12,7 @@ import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal.BeetlRenderFactory;
 
 /**
+ * 全局 Config
  * Created by zc741 on 2017/4/22.
  */
 public class DemoConfig extends JFinalConfig {

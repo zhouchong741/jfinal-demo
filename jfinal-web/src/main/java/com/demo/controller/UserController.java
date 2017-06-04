@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
+ * 用户
  * Created by xxx on 2017/4/24.
  */
 public class UserController extends BaseController {

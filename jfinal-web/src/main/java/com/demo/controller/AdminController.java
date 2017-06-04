@@ -9,6 +9,7 @@ import com.pojo.UserType;
 import java.util.List;
 
 /**
+ * 用户登陆 Controller
  * Created by zc741 on 2017/5/6.
  */
 public class AdminController extends BaseController {

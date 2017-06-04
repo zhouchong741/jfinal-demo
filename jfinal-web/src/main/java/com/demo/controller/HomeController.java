@@ -6,6 +6,7 @@ import com.pojo.ImageType;
 import java.util.List;
 
 /**
+ * 首页
  * Created by zc741 on 2017/4/23.
  */
 public class HomeController extends BaseController {

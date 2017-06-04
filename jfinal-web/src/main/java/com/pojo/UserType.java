@@ -1,6 +1,7 @@
 package com.pojo;
 
 /**
+ * 用户类型
  * Created by zc741 on 2017/5/6.
  */
 public enum UserType {

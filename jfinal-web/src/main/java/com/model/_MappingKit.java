@@ -3,6 +3,7 @@ package com.model;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
+ * _MappingKit
  * Created by zc741 on 2017/4/23.
  */
 public class _MappingKit {

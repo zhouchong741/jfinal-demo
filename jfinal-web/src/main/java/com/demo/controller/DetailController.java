@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 商品详情
  * Created by xxx on 2017/4/26.
  */
 public class DetailController extends BaseController {

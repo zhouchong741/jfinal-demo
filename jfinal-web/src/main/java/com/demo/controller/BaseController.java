@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
+ * BaseController 所有 Controller 基类
  * Created by xxx on 2017/4/25.
  */
 public class BaseController extends Controller {

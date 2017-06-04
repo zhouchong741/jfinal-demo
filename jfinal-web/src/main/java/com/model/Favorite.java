@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.Model;
 import java.util.List;
 
 /**
+ * 喜欢产品 Model
  * Created by xxx on 2017/5/4.
  */
 public class Favorite extends Model<Favorite> {
@@ -16,7 +17,7 @@ public class Favorite extends Model<Favorite> {
      *
      * @param createBy  当前用户
      * @param productId 产品
-     * @return
+     * @return 结果
      */
     public boolean isExistFavorite(String createBy, String productId) {
         String sql = "SELECT EXISTS(SELECT * FROM favorite where createBy=" + createBy + " and productId=" + productId + ")";

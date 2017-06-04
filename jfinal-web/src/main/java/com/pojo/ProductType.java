@@ -1,6 +1,7 @@
 package com.pojo;
 
 /**
+ * 产品类型
  * Created by xxx on 2017/4/26.
  */
 public enum  ProductType {

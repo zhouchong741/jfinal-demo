@@ -14,6 +14,7 @@ import com.qiniu.util.Auth;
 import java.io.File;
 
 /**
+ * 文件上传 使用七牛云
  * Created by xxx on 2017/5/3.
  */
 public class FileController extends BaseController {

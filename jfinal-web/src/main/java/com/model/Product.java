@@ -8,6 +8,7 @@ import com.pojo.ProductType;
 import java.util.List;
 
 /**
+ * 产品 Model
  * Created by zc741 on 2017/4/23.
  */
 public class Product extends Model<Product> {

@@ -5,6 +5,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
+ * 留言 Model
  * Created by xxx on 2017/4/28.
  */
 public class Message extends Model<Message> {

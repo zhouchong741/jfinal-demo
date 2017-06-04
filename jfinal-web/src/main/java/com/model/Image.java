@@ -8,6 +8,7 @@ import com.pojo.ImageType;
 import java.util.List;
 
 /**
+ * 图片 Model
  * Created by zc741 on 2017/4/23.
  */
 public class Image extends Model<Image> {

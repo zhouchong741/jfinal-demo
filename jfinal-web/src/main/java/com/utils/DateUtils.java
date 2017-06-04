@@ -2,6 +2,7 @@ package com.utils;
 
 
 /**
+ * 时间工具类
  * Created by xxx on 2017/4/25.
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {

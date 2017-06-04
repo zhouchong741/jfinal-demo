@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ *
+ * 微信分享工具类
  * Created by xxx on 2017/4/27.
  */
 public class WechatUtil {

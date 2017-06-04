@@ -5,6 +5,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.pojo.UserType;
 
 /**
+ * 用户管理
  * Created by xxx on 2017/4/24.
  */
 public class User extends Model<User> {
