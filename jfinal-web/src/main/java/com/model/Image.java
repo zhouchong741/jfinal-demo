@@ -53,7 +53,7 @@ public class Image extends Model<Image> {
      * @param type
      * @return
      */
-    public List<Image> gethot(ImageType type) {
+    public List<Image> getHot(ImageType type) {
         String sql = "SELECT * FROM image WHERE type='" + type + "'";
         return dao.find(sql);
     }

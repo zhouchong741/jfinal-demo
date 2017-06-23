@@ -18,7 +18,7 @@ public class HomeController extends BaseController {
         setAttr("discounts", discounts);
         List<Image> news = Image.dao.getNews(ImageType.news);
         setAttr("news", news);
-        List<Image> hots = Image.dao.gethot(ImageType.hot);
+        List<Image> hots = Image.dao.getHot(ImageType.hot);
         setAttr("hots",hots);
         if (isMobile) {
             render("/mobile/home/home.html");
