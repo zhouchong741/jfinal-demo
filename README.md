@@ -4,7 +4,6 @@
 ![](https://img.shields.io/badge/release-v0.01-blue.svg)
 ![](https://img.shields.io/badge/Powered%20by-Jfinal%2BBeetl-green.svg)
 ![](https://img.shields.io/badge/Tomcat-7.0.77-orange.svg)
-![](https://img.shields.io/travis/rust-lang/rust.svg)
 
 ## 使用
 1. `git clone https://github.com/zhouchong741/jfinal-demo.git`
