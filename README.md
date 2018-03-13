@@ -10,7 +10,7 @@
 2. 使用 IntelliJ IDEA 导入项目
 3. 安装 Maven 依赖库
 4. 启动项目 打开 `localhost` 开始使用吧
-5. 数据库文件 [http://zc741.com/jfinal.sql]
+5. 数据库文件 [http://zc741.com/jfinal.sql](http://zc741.com/jfinal.sql)
 
 ## IDEA配置
 1. ![](http://i.imgur.com/JAdVNMg.png)
